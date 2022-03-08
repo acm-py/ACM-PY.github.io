@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>一些库的使用指南 on 阿炳-一个热衷于折腾和技术的Coder</title>
+    <link>https://acm-py.github.io/tags/%E4%B8%80%E4%BA%9B%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+    <description>Recent content in 一些库的使用指南 on 阿炳-一个热衷于折腾和技术的Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 08 Jan 2019 09:22:17 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/tags/%E4%B8%80%E4%BA%9B%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Request库使用指南</title>
+      <link>https://acm-py.github.io/post/request%E5%BA%93%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Tue, 08 Jan 2019 09:22:17 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/request%E5%BA%93%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+      <description>Requests Library 库使用指南 本文翻译于Real Python，翻译以便于查阅。若有不同之处，夹杂作者主观喜好。 开始 1 2 3 4 5 6 7 8 9 10 11 12 response = request.get(&amp;#39;url&amp;#39;) # 可以向下面</description>
+    </item>
+    
+  </channel>
+</rss>

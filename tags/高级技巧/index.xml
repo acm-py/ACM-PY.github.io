@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>高级技巧 on 阿炳-一个热衷于折腾和技术的Coder</title>
+    <link>https://acm-py.github.io/tags/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/</link>
+    <description>Recent content in 高级技巧 on 阿炳-一个热衷于折腾和技术的Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 02 Mar 2022 17:29:10 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/tags/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python元类的使用</title>
+      <link>https://acm-py.github.io/post/python%E5%85%83%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 02 Mar 2022 17:29:10 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/python%E5%85%83%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>如果需要你将类中所有属性强制转为大写该怎么办 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 # 这个时候就需要使用Python的元类功能了 # metaclass will automatically get</description>
+    </item>
+    
+    <item>
+      <title>详解装饰器</title>
+      <link>https://acm-py.github.io/post/%E8%AF%A6%E8%A7%A3%E8%A3%85%E9%A5%B0%E5%99%A8/</link>
+      <pubDate>Sun, 04 Jul 2021 19:21:50 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/%E8%AF%A6%E8%A7%A3%E8%A3%85%E9%A5%B0%E5%99%A8/</guid>
+      <description>装饰器 1. 为什么要使用装饰器 开放封闭原则：软件一旦上线后，就应该遵循开放封闭原则，即对修改源代码是封闭的，对功能的扩展是开放的。 也就是说我们必</description>
+    </item>
+    
+  </channel>
+</rss>

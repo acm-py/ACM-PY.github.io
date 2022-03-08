@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ORM on 阿炳-一个热衷于折腾和技术的Coder</title>
+    <link>https://acm-py.github.io/tags/orm/</link>
+    <description>Recent content in ORM on 阿炳-一个热衷于折腾和技术的Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Feb 2021 13:41:14 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/tags/orm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python属性描述符在ORM的应用</title>
+      <link>https://acm-py.github.io/post/python%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6%E5%9C%A8orm%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Wed, 17 Feb 2021 13:41:14 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/python%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6%E5%9C%A8orm%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>Django ORM原理 为什么创建的Model会自动拥有名称为id的主键 查询管理器是什么？ 它又是怎么添加到Model中的？ QuerySet是什么样的结构</description>
+    </item>
+    
+  </channel>
+</rss>

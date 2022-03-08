@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NoSQL on 阿炳-一个热衷于折腾和技术的Coder</title>
+    <link>https://acm-py.github.io/categories/nosql/</link>
+    <description>Recent content in NoSQL on 阿炳-一个热衷于折腾和技术的Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 12 May 2020 13:41:14 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/categories/nosql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis简单介绍与使用</title>
+      <link>https://acm-py.github.io/post/redis%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 12 May 2020 13:41:14 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/redis%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</guid>
+      <description>什么是NoSQL -&amp;gt; Not Only SQL k-v模式存储 不遵循SQL标准 不支持ACID(不代表不支持事务) 远超于SQL的性能 适用场景 对数据高并发的读写 海量数据</description>
+    </item>
+    
+  </channel>
+</rss>

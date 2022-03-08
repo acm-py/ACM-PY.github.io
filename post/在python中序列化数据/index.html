@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>网络信息采集读书笔记 - 阿炳-一个热衷于折腾和技术的Coder</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="bing" /><meta name="description" content="python网络采集读书笔记 第一章 1 2 import urllib html = ulropen(&amp;#34;http://www.pythonscraping.com/page/page1.html&amp;#34;) 网页是十分复杂的，网页数据格式更是如此。 所以让我们来看看import 之后的这行代码可能会发生" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.93.0 with theme even" />
+
+
+<link rel="canonical" href="https://acm-py.github.io/post/%E5%9C%A8python%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="网络信息采集读书笔记" />
+<meta property="og:description" content="python网络采集读书笔记 第一章 1 2 import urllib html = ulropen(&#34;http://www.pythonscraping.com/page/page1.html&#34;) 网页是十分复杂的，网页数据格式更是如此。 所以让我们来看看import 之后的这行代码可能会发生" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://acm-py.github.io/post/%E5%9C%A8python%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-08T15:36:11+08:00" />
+<meta property="article:modified_time" content="2020-03-08T15:36:11+08:00" />
+
+<meta itemprop="name" content="网络信息采集读书笔记">
+<meta itemprop="description" content="python网络采集读书笔记 第一章 1 2 import urllib html = ulropen(&#34;http://www.pythonscraping.com/page/page1.html&#34;) 网页是十分复杂的，网页数据格式更是如此。 所以让我们来看看import 之后的这行代码可能会发生"><meta itemprop="datePublished" content="2020-03-08T15:36:11+08:00" />
+<meta itemprop="dateModified" content="2020-03-08T15:36:11+08:00" />
+<meta itemprop="wordCount" content="9579">
+<meta itemprop="keywords" content="读书笔记," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="网络信息采集读书笔记"/>
+<meta name="twitter:description" content="python网络采集读书笔记 第一章 1 2 import urllib html = ulropen(&#34;http://www.pythonscraping.com/page/page1.html&#34;) 网页是十分复杂的，网页数据格式更是如此。 所以让我们来看看import 之后的这行代码可能会发生"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">阿炳</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">阿炳</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">网络信息采集读书笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-08 </span>
+        <div class="post-category">
+            <a href="/categories/python/"> Python </a>
+            </div>
+          <span class="more-meta"> 约 9579 字 </span>
+          <span class="more-meta"> 预计阅读 20 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#python网络采集读书笔记">python网络采集读书笔记</a>
+      <ul>
+        <li><a href="#第一章">第一章</a></li>
+        <li><a href="#第二章">第二章</a>
+          <ul>
+            <li><a href="#beautifulsoup初识"><strong>BeautifulSoup初识</strong></a></li>
+            <li><a href="#221beautifulsoup的find和findall"><strong>2.2.1　BeautifulSoup的</strong>**<code>find()</code>**<strong>和`findAll()</strong></a></li>
+            <li><a href="#222-其他beautifulsoup对象"><strong>2.2.2 其他BeautifulSoup对象</strong></a></li>
+            <li><a href="#223导航树"><strong>2.2.3　导航树</strong></a></li>
+            <li><a href="#23正则表达式"><strong>2.3　正则表达式</strong></a></li>
+            <li><a href="#24正则表达式和beautifulsoup"><strong>2.4　正则表达式和BeautifulSoup</strong></a></li>
+            <li><a href="#25获取属性"><strong>2.5　获取属性</strong></a></li>
+            <li><a href="#26lambda表达式"><strong>2.6　Lambda表达式</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#第-3-章--开始采集">第 3 章  开始采集</a>
+          <ul>
+            <li><a href="#31--遍历单个域名">3.1  遍历单个域名</a></li>
+          </ul>
+        </li>
+        <li><a href="#上面的random为-python-的伪随机数pseudorandom-number生成器用的是梅森旋转mersenne-twister算法比较耗费cpu资源">上面的random为 Python 的伪随机数（pseudorandom number）生成器用的是梅森旋转（Mersenne Twister）算法，比较耗费CPU资源。</a>
+          <ul>
+            <li><a href="#32--采集整个网站">3.2  采集整个网站</a></li>
+          </ul>
+        </li>
+        <li><a href="#关于递归的警告python-默认的递归限制程序递归地自我调用次数是-1000-次"><strong>关于递归的警告</strong>Python 默认的递归限制（程序递归地自我调用次数）是 1000 次。</a>
+          <ul>
+            <li><a href="#33通过互联网采集"><strong>3.3　通过互联网采集</strong></a></li>
+            <li><a href="#34--用scrapy采集">3.4  用Scrapy采集</a></li>
+          </ul>
+        </li>
+        <li><a href="#4--api">4、  API</a></li>
+        <li><a href="#和爬虫类似都是像服务器发送http请求获得数据">和爬虫类似，都是像服务器发送HTTP请求，获得数据。</a></li>
+        <li><a href="#存储数据">存储数据</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#网络数据采集的一个常用功能就是获取-html-表格并写入-csv-文件维基百科的文本编辑器对比词条httpsenwikipediaorgwikicomparison_of_text_editors中用了许多复杂的httpsenwikipediaorgwikicomparison_of_text_editorsefbc89e4b8ade794a8e4ba86e8aeb8e5a49ae5a48de69d82e79a84-html-表格用到了颜色链接排序以及其他在写入-csv-文件之前需要忽略的-html-元素用-beautifulsoup-和-get_text-函数你可以用十几行代码完成这件事">网络数据采集的一个常用功能就是获取 HTML 表格并写入 CSV 文件。维基百科的文本编辑器对比词条（<a href="https://en.wikipedia.org/wiki/Comparison_of_text_editors%EF%BC%89%E4%B8%AD%E7%94%A8%E4%BA%86%E8%AE%B8%E5%A4%9A%E5%A4%8D%E6%9D%82%E7%9A%84">https://en.wikipedia.org/wiki/Comparison_of_text_editors）中用了许多复杂的</a> HTML 表格，用到了颜色、链接、排序，以及其他在写入 CSV 文件之前需要忽略的 HTML 元素。用 BeautifulSoup 和 <code>get_text()</code> 函数，你可以用十几行代码完成这件事：</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#最后要注意的是finally-语句是在程序主循环的外面代码的最底下这样做可以保证无论程序执行过程中如何发生中断或抛出异常当然因为网络很复杂你得随时准备遭遇异常光标和连接都会在程序结束前立即关闭无论你是在采集网络还是处理一个打开连接的数据库用-tryfinally-都是一个好主意">最后要注意的是，<code>finally</code> 语句是在程序主循环的外面，代码的最底下。这样做可以保证，无论程序执行过程中如何发生中断或抛出异常（当然，因为网络很复杂，你得随时准备遭遇异常），光标和连接都会在程序结束前立即关闭。<strong>无论你是在采集网络，还是处理一个打开连接的数据库，用 <strong><strong><code>try...finally</code></strong></strong> 都是一个好主意。</strong></a></li>
+        <li><a href="#第六章--读取文档">第六章、  读取文档</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#第七章--数据清洗">第七章  数据清洗</a>
+          <ul>
+            <li><a href="#71--编写代码清洗数据">7.1  编写代码清洗数据</a></li>
+          </ul>
+        </li>
+        <li><a href="#测试">测试</a>
+          <ul>
+            <li><a href="#单元测试">单元测试</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="python网络采集读书笔记">python网络采集读书笔记</h1>
+<h2 id="第一章">第一章</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib</span>
+</span></span><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="n">ulropen</span><span class="p">(</span><span class="s2">&#34;http://www.pythonscraping.com/page/page1.html&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>网页是十分复杂的，网页数据格式更是如此。</p>
+<p>所以让我们来看看import 之后的这行代码可能会发生的异常：</p>
+<ul>
+<li>
+<p>网页在服务器上不存在（或者获取页面的时候出现错误）</p>
+</li>
+<li>
+<p>服务器不存在</p>
+</li>
+</ul>
+<p>第一种异常发生时，程序会返回HTTP错误。HTTP错误可能是&quot;404 Page Not Found&quot;&ldquo;500</p>
+<p>Internal Server Error&quot;等。所有类似情形，urlopen 函数都会抛出&quot;HTTP Error”异常。我们可以用下面的方式处理这种异常：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://www.pythonscraping.com/pages/page1.html&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 返回空值，中断程序，或者执行另一个方案</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 程序继续。注意：如果你已经在上面异常捕捉那一段代码里返回或中断（break），</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 那么就不需要使用else语句了，这段代码也不会执行</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果程序返回 HTTP 错误代码，程序就会显示错误内容，不再执行 <code>else</code> 语句后面的代码。</p>
+<p>如果服务器不存在（就是说链接 <a href="http://www.pythonscraping.com/">http://www.pythonscraping.com/</a> 打不开，或者是 URL 链接写错了），<code>urlopen</code> 会返回一个 <code>None</code> 对象。这个对象与其他编程语言中的 <code>null</code> 类似。我们可以增加一个判断语句检测返回的 <code>html</code>是不是 <code>None</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">html</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;URL is not found&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 程序继续</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而且网页已经从服务器获取，网页内从并非完全是我们期望的那样，仍然可能会出现异常。</p>
+<p>例如，如果从Beautiful soup 对象中取一个不存在的对象，会返回<strong>None</strong>，</p>
+<p>如果对该不存在的标签继续取它的子标签就会产生<strong>AttributeError</strong>错误。</p>
+<p><strong>所以厝里和检查这个对象是十分必要的</strong></p>
+<p>对两种状况进行检查</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="c1"># nonExistingTag 代表一个不存在的标签</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">badContent</span> <span class="o">=</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">nonExistingTag</span><span class="o">.</span><span class="n">anotherTag</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Tag was not found&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">badContent</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">           <span class="nb">print</span> <span class="p">(</span><span class="s2">&#34;Tag was not found&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">badContent</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重新对整个过程组织一下代码，让她（没错，情人）变得不那么难看（难读）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.error</span> <span class="kn">import</span> <span class="n">HTTPError</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getTitle</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">         <span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="n">title</span> <span class="o">=</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">h1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">title</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span> <span class="o">=</span> <span class="n">getTitle</span><span class="p">(</span><span class="s2">&#34;http://www.pythonscraping.com/pages/page1.html&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">title</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Title could not be found&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="第二章">第二章</h2>
+<h3 id="beautifulsoup初识"><strong>BeautifulSoup初识</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://www.pythonscraping.com/pages/warandpeace.html&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择span标签,class属性-值为green</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 返回结果是列表形式</span>
+</span></span><span class="line"><span class="cl"><span class="n">namelist</span> <span class="o">=</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;span&#34;</span><span class="p">,{</span><span class="s2">&#34;class&#34;</span><span class="p">:</span><span class="s2">&#34;green&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">namelist</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">get_text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="什么时候使用get_ext与什么时候应该保留标签">什么时候使用get_ext()与什么时候应该保留标签</h4>
+<p><code>.get_text()</code> 会把你正在处理的 HTML 文档中所有的标签都清除，然后返回一个只包含文字的字符串。假如你正在处理一个包含许多超链接、段落和标签的大段源代码，那么 <code>.get_text()</code> 会把这些超链接、段落和标签都清除掉，只剩下一串不带标签的文字。</p>
+<p>用 BeautifulSoup 对象查找你想要的信息，比直接在 HTML 文本里查找信息要简单得多。通常在你准备打印、存储和操作数据时，应该最后才使用 <code>.get_text()</code>。一般情况下，你应该尽可能地保留 HTML 文档的标签结构。</p>
+<h3 id="221beautifulsoup的find和findall"><strong>2.2.1　BeautifulSoup的</strong>**<code>find()</code>**<strong>和`findAll()</strong></h3>
+<p>参数：</p>
+<ol>
+<li>
+<p><strong>tag</strong> &ndash; 多个参数以集合形式传递｛&ldquo;1&rdquo;,&ldquo;2&rdquo;｝1,2为标签名</p>
+</li>
+<li>
+<p><strong>attributes</strong> &ndash; 以python 中字典的形式传递</p>
+</li>
+<li>
+<p>recursive &ndash; 递归 &ndash; 递归参数 <code>recursive</code> 是一个布尔变量</p>
+</li>
+</ol>
+<ul>
+<li>recursive<code>设置为</code>True<code>，</code>findAll<code>就会根据你的要求去查找标签参数的所有子标签，以及子标签的子标签。如果</code>recursive<code>设置为</code>False<code>，</code>findAll<code> 就只查找文档的一级标签。</code>findAll<code> 默认是支持递归查找的（</code>recursive<code>默认值是</code>True`）；一般情况下这个参数不需要设置，除非你真正了解自己需要哪些信息，而且抓取速度非常重要，那时你可以设置递归参数。</li>
+</ul>
+<ol>
+<li>
+<p>text &ndash; 使用标签内的文本内容进行匹配</p>
+</li>
+<li>
+<p>limit &ndash; find 函数相当于 findAll 函数将limit=1</p>
+</li>
+<li>
+<p>keywords &ndash; 可以让你选择那些具有指定属性的标签</p>
+</li>
+</ol>
+<p>但是建议不要使用keyword参数，完全可以被其他技术代替，是Beautiful在技术上做的一个冗余功能。</p>
+<p>例如，下面两行代码是完全一样的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&#34;text&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;text&#34;</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>另外，用 <code>keyword</code> 偶尔会出现问题，尤其是在用 <code>class</code> 属性查找标签的时候，因为 <code>class</code> 是 Python 中受保护的关键字。也就是说，<code>class</code> 是 Python 语言的保留字，在 Python 程序里是不能当作变量或参数名使用的（和前面介绍的 <code>BeautifulSoup.findAll()</code> 里的 <code>keyword</code>无关）<strong>2</strong>。假如你运行下面的代码，Python 就会因为你误用 <code>class</code> 保留字而产生一个语法错误：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="n">class</span><span class="o">=</span><span class="s2">&#34;green&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不过，你可以用 BeautifulSoup 提供的有点儿臃肿的方案，在 <code>class</code> 后面增加一个下划线：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s2">&#34;green&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另外，你也可以用属性参数把 <code>class</code> 用引号包起来：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;class&#34;</span><span class="p">:</span><span class="s2">&#34;green&#34;</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="222-其他beautifulsoup对象"><strong>2.2.2 其他BeautifulSoup对象</strong></h3>
+<p>看到这里，你已经见过 BeautifulSoup 库里的两种对象了。</p>
+<ul>
+<li><strong><code>BeautifulSoup</code></strong>** 对象**</li>
+</ul>
+<p>前面代码示例中的 <code>bsObj</code></p>
+<ul>
+<li><strong>标签 <strong><strong><code>Tag</code></strong></strong> 对象</strong></li>
+</ul>
+<p><code>BeautifulSoup</code> 对象通过 <code>find</code> 和 <code>findAll</code>，或者直接调用子标签获取的一列对象或单个对象，就像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">bsObj</span><span class="o">.</span><span class="n">div</span><span class="o">.</span><span class="n">h1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面的这两者虽然不常用，可以了解一下。</p>
+<ul>
+<li><strong><code>NavigableString</code></strong>** 对象**</li>
+</ul>
+<p>用来表示标签里的文字，不是标签（有些函数可以操作和生成 <code>NavigableString</code> 对象，而不是标签对象）。</p>
+<ul>
+<li><strong><code>Comment</code></strong>** 对象**</li>
+</ul>
+<p>用来查找 HTML 文档的注释标签，<code>用来查找 HTML 文档的注释标签，</code></p>
+<h3 id="223导航树"><strong>2.2.3　导航树</strong></h3>
+<p><strong>1. 处理子标签和后代标签</strong></p>
+<p>一般情况下，BeautifulSoup 函数总是处理当前标签的后代标签。例如，<code>bsObj.body.h1</code> 选择了 <code>body</code> 标签后代里的第一个 <code>h1</code> 标签，不会去找 <code>body</code> 外面的标签。</p>
+<p>如果只是想找出子标签，可以用.children标签:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span> 
+</span></span><span class="line"><span class="cl">  <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://www.pythonscraping.com/pages/page3.html&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;table&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;giftList&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">print</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一般情况下，BeautifulSoup 函数总是处理当前标签的后代标签。例如，<code>bsObj.body.h1</code> 选择了 <code>body</code> 标签后代里的第一个 <code>h1</code> 标签，不会去找 <code>body</code> 外面的标签。</p>
+<p><strong>2. 处理兄弟标签</strong></p>
+<p>BeautifulSoup 的 <code>next_siblings()</code> 函数可以让收集表格数据成为简单的事情，尤其是处理带标题行的表格：</p>
+<p><strong>让标签的选择更具体</strong></p>
+<p>即使页面上只有一个表格（或其他目标标签），只用标签也很容易丢失细节。另外，页面布局总是不断变化的。一个标签这次是在表格中第一行的位置，没准儿哪天就在第二行或第三行了。如果想让你的爬虫更稳定，最好还是让标签的选择更加具体。如果有属性，就利用标签的属性。</p>
+<p>同样有next_sibling 函数就有previous_sibling函数、以及next_siblings、previous_siblings函数</p>
+<p><strong>3. 父标签处理</strong></p>
+<p>.parents &ndash; 父标签查找函数</p>
+<h3 id="23正则表达式"><strong>2.3　正则表达式</strong></h3>
+<p>计算机科学里曾经有个笑话：“如果你有一个问题打算用正则表达式（regular expression）来解决，那么就是两个问题了。”</p>
+<p>| 符号 |                       含义                        |   例子   |          匹配结果           |</p>
+<p>| :&ndash;: | :&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;: | :&mdash;&mdash;: | :&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-: |</p>
+<p>| <code>*</code>  | 匹配前面的字符、子表达式或括号里的字符 0 次或多次 |  <code>a*b*</code>  | aaaaaaaa，aaabbbbb，bbbbbb  |</p>
+<p>| <code>+</code>  |  匹配前面的字符、子表达式或括号里的字符至少 1 次  |  <code>a+b+</code>  | aaaaaaab，aaabbbbb，abbbbbb |</p>
+<p>| <code>[]</code> |       匹配任意一个字符（相当于“任选一个”）        | <code>[A-Z]*</code> |      APPLE，CAPITALS，      |</p>
+<p>| <code>[]</code>    | 匹配任意一个字符（相当于“任选一个”）                         | <code>[A-Z]*</code>          | APPLE，CAPITALS，QWERTY        |</p>
+<p>| &mdash;&mdash;- | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |</p>
+<p>| <code>()</code>    | 表达式编组（在正则表达式的规则里编组会优先运行）             | <code>(a*b)*</code>          | aaabaab，abaaab，ababaaaaab    |</p>
+<p>| <code>{m,n}</code> | 匹配前面的字符、子表达式或括号里的字符 m 到 n 次（包含 m 或 n） | <code>a{2,3}b{2,3}</code>    | aabbb，aaabbb，aabb            |</p>
+<p>| <code>[^]</code>   | 匹配任意一个不在中括号里的字符                               | <code>[^A-Z]*</code>         | apple，lowercase，qwerty       |</p>
+<p>| <code>|</code>     | 匹配任意一个由竖线分割的字符、子表达式（注意是竖线，不是大字字母I） | <code>b(a|i|e)d</code>       | bad，bid，bed                  |</p>
+<p>| <code>.</code>     | 匹配任意单个字符（包括符号、数字和空格等）                   | <code>b.d</code>             | bad，bzd，b$d，b d             |</p>
+<p>| <code>^</code>     | 指字符串开始位置的字符或子表达式                             | <code>^a</code>              | apple，asdf，a                 |</p>
+<p>| <code>\</code>     | 转义字符（把有特殊含义的字符转换成字面形式）                 | <code>\.\ | \\</code>        | . | \                         |</p>
+<p>| <code>$</code>     | 经常用在正则表达式的末尾，表示“从字符串的末端匹配”。如果不用它，每个正则表达式实际都带着“<code>.*</code>”模式，只会从字符串开头进行匹配。这个符号可以看成是 ^ 符号的反义词 | <code>[A-Z]*[a-z]*$</code>   | ABCabc，zzzyx，Bob             |</p>
+<p>| <code>?!</code>    | “不包含”。这个奇怪的组合通常放在字符或正则表达式前面，表示字符不能出现在目标字符串里。这个符号比较难用，字符通常会在字符串的不同部位出现。如果要在整个字符串中全部排除某个字符，就加上 <code>^</code> 和 <code>$</code>符号 |</p>
+<p>`^((?</p>
+<p>![A-Z]).)*$` | no-caps-here，$ymb0ls a4e f!ne |</p>
+<h3 id="24正则表达式和beautifulsoup"><strong>2.4　正则表达式和BeautifulSoup</strong></h3>
+<p>一般来说，大多数支持支持字符串参数的函数（比如，find(id = &ldquo;aTagIdHere&rdquo;)）都可以用正则表达式实现。</p>
+<h3 id="25获取属性"><strong>2.5　获取属性</strong></h3>
+<p>到目前为止，我们已经介绍过如何获取和过滤标签，以及获取标签里的内容。但是，在网络数据采集时你经常不需要查找标签的内容，而是需要查找标签属性。比如标签 <code>指向的 URL 链接包含在 </code>href<code> 属性中，或者</code> 标签的图片文件包含在 <code>src</code> 属性中，这时获取标签属性就变得非常有用了。</p>
+<p>对于一个标签对象，可以用下面的代码获取它的全部属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">myTag</span><span class="o">.</span><span class="n">attrs</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>要注意这行代码返回的是一个 Python 字典对象，可以获取和操作这些属性。比如要获取图片的资源位置 <code>src</code>，可以用下面这行代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">myImgTag</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&#34;src&#34;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="26lambda表达式"><strong>2.6　Lambda表达式</strong></h3>
+<p>Lambda 表达式本质上就是一个函数，可以作为其他函数的变量使用；也就是说，一个函数不是定义成 <code>f(x, y)</code>，而是定义成 <code>f(g(x), y)</code>，或 <code>f(g(x), h(x))</code> 的形式。</p>
+<p>BeautifulSoup 允许我们把特定函数类型当作 <code>findAll</code> 函数的参数。唯一的<strong>限制条件</strong>是这些函数必须把一个标签作为参数且<strong>返回结果是布尔类型</strong>。</p>
+<p>BeautifulSoup 用这个函数来评估它遇到的每个标签对象，最后把评估结果为“真”的标签保留，把其他标签剔除。</p>
+<p>例如，下面的代码就是获取有两个属性的标签：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这行代码会找出下面的标签：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;color:red&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="第-3-章--开始采集">第 3 章  开始采集</h2>
+<h3 id="31--遍历单个域名">3.1  遍历单个域名</h3>
+<h4 id="维基百科六度分隔理论">&ldquo;维基百科六度分隔理论&rdquo;</h4>
+<p>用该理论来爬取维基百科的词条。</p>
+<ul>
+<li>
+<p>一个函数 <code>getLinks</code>，可以用维基百科词条 <code>/wiki/&lt; 词条名称 &gt;</code> 形式的 URL 链接作为参数，然后以同样的形式返回一个列表，里面包含所有的词条 URL 链接。</p>
+</li>
+<li>
+<p>一个主函数，以某个起始词条为参数调用 <code>getLinks</code>，再从返回的 URL 列表里随机选择一个词条链接，再调用 <code>getLinks</code>，直到我们主动停止，或者在新的页面上没有词条链接了，程序才停止运行。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建随机数&#34;种子&#34;（random seed）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 完全相同的种子每次均会产生相同的&#34;随机&#34;数序列</span>
+</span></span><span class="line"><span class="cl"><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getLinks</span><span class="p">(</span><span class="n">articleUrl</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://en.wikipedia.org&#34;</span><span class="o">+</span><span class="n">articleUrl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;bodyContent&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">href</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;^(/wiki/)((?!:).)*$&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">links</span> <span class="o">=</span> <span class="n">getLinks</span><span class="p">(</span><span class="s2">&#34;/wiki/Kevin_Bacon&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">newArticle</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&#34;href&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">newArticle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">links</span> <span class="o">=</span> <span class="n">getLinks</span><span class="p">(</span><span class="n">newArticle</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="上面的random为-python-的伪随机数pseudorandom-number生成器用的是梅森旋转mersenne-twister算法比较耗费cpu资源">上面的random为 Python 的伪随机数（pseudorandom number）生成器用的是梅森旋转（Mersenne Twister）算法，比较耗费CPU资源。</h2>
+<h3 id="32--采集整个网站">3.2  采集整个网站</h3>
+<ul>
+<li>
+<p><strong>生成网站地图</strong></p>
+</li>
+<li>
+<p><strong>收集数据</strong></p>
+</li>
+<li>
+<p>为了避免重复采集链接，可以利用python的集合（set）结构去重。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">pages</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getLinks</span><span class="p">(</span><span class="n">pageUrl</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">pages</span>
+</span></span><span class="line"><span class="cl">    <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://en.wikipedia.org&#34;</span><span class="o">+</span><span class="n">pageUrl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;^(/wiki/)&#34;</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;href&#39;</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pages</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 我们遇到了新页面</span>
+</span></span><span class="line"><span class="cl">                <span class="n">newPage</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="n">newPage</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pages</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">newPage</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">getLinks</span><span class="p">(</span><span class="n">newPage</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">getLinks</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="关于递归的警告python-默认的递归限制程序递归地自我调用次数是-1000-次"><strong>关于递归的警告</strong>Python 默认的递归限制（程序递归地自我调用次数）是 1000 次。</h2>
+<h3 id="33通过互联网采集"><strong>3.3　通过互联网采集</strong></h3>
+<p>在你写爬虫随意跟随外链跳转之前，请问自己几个问题。</p>
+<ul>
+<li>
+<p>我要收集哪些数据？这些数据可以通过采集几个已经确定的网站（永远是最简单的做法）完成吗？或者我的爬虫需要发现那些我可能不知道的网站吗？</p>
+</li>
+<li>
+<p>当我的爬虫到了某个网站，它是立即顺着下一个出站链接跳到一个新网站，还是在网站上呆一会儿，深入采集网站的内容？</p>
+</li>
+<li>
+<p>有没有我不想采集的一类网站？我对非英文网站的内容感兴趣吗？</p>
+</li>
+<li>
+<p>如果我的网络爬虫引起了某个网站网管的怀疑，我如何避免法律责任？（关于这个问题的更多信息请参考附录 C。）</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="n">pages</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取页面所有内链的列表</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getInternalLinks</span><span class="p">(</span><span class="n">bsObj</span><span class="p">,</span> <span class="n">includeUrl</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#这句代码的意思是获得(includeUrl)的协议 -- 例如：http/htpps</span>
+</span></span><span class="line"><span class="cl">    <span class="n">includeUrl</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">includeUrl</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span><span class="o">+</span><span class="s2">&#34;://&#34;</span><span class="o">+</span><span class="n">urlparse</span><span class="p">(</span><span class="n">includeUrl</span><span class="p">)</span><span class="o">.</span><span class="n">netloc</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#推测出该.netloc 是取（includeUrl）的域名 例如:www.baidu.com/www.wiki.com</span>
+</span></span><span class="line"><span class="cl">    <span class="n">internalLinks</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 找出所有以&#34;/&#34;开头的链接</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;^(/|.*&#34;</span><span class="o">+</span><span class="n">includeUrl</span><span class="o">+</span><span class="s2">&#34;)&#34;</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">internalLinks</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">internalLinks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">internalLinks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">internalLinks</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取页面所有外链的列表</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getExternalLinks</span><span class="p">(</span><span class="n">bsObj</span><span class="p">,</span> <span class="n">excludeUrl</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">externalLinks</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 找出所有以&#34;http&#34;或&#34;www&#34;开头且不包含当前URL的链接</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span><span class="n">href</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;^(http|www)((?!&#34;</span><span class="o">+</span><span class="n">excludeUrl</span><span class="o">+</span><span class="s2">&#34;).)*$&#34;</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">externalLinks</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">externalLinks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">externalLinks</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 爬去地址</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">splitAddress</span><span class="p">(</span><span class="n">address</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addressParts</span> <span class="o">=</span> <span class="n">address</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;http://&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">addressParts</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取随机外链接</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getRandomExternalLink</span><span class="p">(</span><span class="n">startingPage</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">startingPage</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># [0]--返回一个列表，获取外链</span>
+</span></span><span class="line"><span class="cl">    <span class="n">externalLinks</span> <span class="o">=</span> <span class="n">getExternalLinks</span><span class="p">(</span><span class="n">bsObj</span><span class="p">,</span> <span class="n">splitAddress</span><span class="p">(</span><span class="n">startingPage</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">externalLinks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;No external links, looking around the site for one&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">domain</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">startingPage</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span><span class="o">+</span><span class="s2">&#34;://&#34;</span><span class="o">+</span><span class="n">urlparse</span><span class="p">(</span><span class="n">startingPage</span><span class="p">)</span><span class="o">.</span><span class="n">netloc</span>
+</span></span><span class="line"><span class="cl">        <span class="n">internalLinks</span> <span class="o">=</span> <span class="n">getInternalLinks</span><span class="p">(</span><span class="n">bsObj</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">internalLinks</span> <span class="o">=</span> <span class="n">getInternalLinks</span><span class="p">(</span><span class="n">startingPage</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">getNextExternalLink</span><span class="p">(</span><span class="n">internalLinks</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="nb">len</span><span class="p">(</span><span class="n">internalLinks</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">externalLinks</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">externalLinks</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">followExternalOnly</span><span class="p">(</span><span class="n">startingSite</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">externalLink</span> <span class="o">=</span> <span class="n">getRandomExternalLink</span><span class="p">(</span><span class="n">startingSite</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Random external link is: &#34;</span><span class="o">+</span><span class="n">externalLink</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">followExternalOnly</span><span class="p">(</span><span class="n">externalLink</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">followExternalOnly</span><span class="p">(</span><span class="s2">&#34;http://oreilly.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                         
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/acm-py/go-learn/master/typora20200227221220-454677.png" alt=""></p>
+<p><strong>不要把示例程序放进产品代码</strong></p>
+<p>如果爬虫遇到一个网站里面一个外链都没有（虽然不太可能，但是如果程序运行的时候够长总会遇到这类情况），这时程序就会一直在这个网站运行跳不出去，直到递归到达 Python 的限制为止。</p>
+<p><strong>总结：真实产品代码中必须有的检查和异常处理。</strong></p>
+<p>把任务分解成像“获取页面上所有外链”这样的小函数是不错的做法，以后可以方便地修改代码以满足另一个采集任务的需求。例如，如果我们的目标是采集一个网站所有的外链，并且记录每一个外链，我们可以增加下面的函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="c1"># 收集网站上发现的所有外链列表</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用集合存储外链和内链</span>
+</span></span><span class="line"><span class="cl"><span class="n">allExtLinks</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">allIntLinks</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getAllExternalLinks</span><span class="p">(</span><span class="n">siteUrl</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">siteUrl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="n">bsOvj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">internalLinks</span> <span class="o">=</span> <span class="n">getAllExternalLinks</span><span class="p">(</span><span class="n">bsObj</span><span class="p">,</span><span class="n">splitAddress</span><span class="p">(</span><span class="n">siteUrl</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">externalLinks</span> <span class="o">=</span> <span class="n">getAllExternalLinks</span><span class="p">(</span><span class="n">bsObj</span><span class="p">,</span><span class="n">splitAddress</span><span class="p">(</span><span class="n">siteUrl</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">externalLinks</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allExtLinks</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">allExtLinks</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">internalLinks</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allIntLinks</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;即将获取链接的URL是：&#34;</span><span class="o">+</span><span class="n">link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">allIntLinks</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">getAllExternalLinks</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl"> <span class="n">getAllExternalLinks</span><span class="p">(</span><span class="s2">&#34;http://oreilly.com&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/acm-py/go-learn/master/typora20200227221154-162286.png" alt=""></p>
+<h3 id="34--用scrapy采集">3.4  用Scrapy采集</h3>
+<p>写网络爬虫的挑战之一是你经常需要不断地重复一些简单任务：<strong>找出页面上的所有链接，区分内链与外链，跳转到新的页面</strong>。</p>
+<p>Scrapy 就是一个帮你大幅度降低网页链接查找和识别工作复杂度的 Python 库</p>
+<p>在当前目录下创建一个Scrapy项目（这和Django一样）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="n">scrapy</span> <span class="n">startproject</span> <span class="n">wikiSpider</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>wikiSpider是新项目的名称。在当前目录中会新建一个名称也是wikiSpider的项目文件夹。文件夹的目录结构如下所示：</p>
+<p><img src="https://raw.githubusercontent.com/acm-py/go-learn/master/typora20200229130934-446679.png" alt=""></p>
+<p>Scrapy的每个Item(条目)对象表示网站上的一个页面。</p>
+<h2 id="4--api">4、  API</h2>
+<h2 id="和爬虫类似都是像服务器发送http请求获得数据">和爬虫类似，都是像服务器发送HTTP请求，获得数据。</h2>
+<p>不同的是，API是将预先打包好的数据（明显更有价值）发送给请求者。 并且 返回的格式类型为XML、或者JSON（更推荐）</p>
+<h2 id="存储数据">存储数据</h2>
+<p>如果你准备创建一个网站的后端服务或者创建自己的 API，那么可能都需要让爬虫把数据写入数据库。如果你需要一个快速简单的方法收集网上的文档，然后存到你的硬盘里，那么可能需要创建一个文件流（file stream）来实现。如果还要为偶然事件提个醒儿，或者每天定时收集当天累计的数据，就给自己发一封邮件吧！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getAbsoluteURL</span><span class="p">(</span><span class="n">baseUrl</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;http://www.&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://&#34;</span><span class="o">+</span><span class="n">source</span><span class="p">[</span><span class="mi">11</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">source</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;http://&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="n">source</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">source</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;www.&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://&#34;</span><span class="o">+</span><span class="n">source</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="n">baseUrl</span><span class="o">+</span><span class="s2">&#34;/&#34;</span><span class="o">+</span><span class="n">source</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">baseUrl</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">url</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个函数的功能就是调整url的正确性</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="52--把数据存储到csv文件中">5.2  把数据存储到CSV文件中</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">csv</span>
+</span></span><span class="line"><span class="cl"><span class="n">csvFile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;../files/test.csv&#34;</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvFile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">((</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;number plus 2&#39;</span><span class="p">,</span> <span class="s1">&#39;number times 2&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">csvFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行完成后</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="line"><span class="cl">number,number plus 2,number times 2
+</span></span><span class="line"><span class="cl">0,2,0
+</span></span><span class="line"><span class="cl">1,3,2
+</span></span><span class="line"><span class="cl">2,4,4
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="网络数据采集的一个常用功能就是获取-html-表格并写入-csv-文件维基百科的文本编辑器对比词条httpsenwikipediaorgwikicomparison_of_text_editors中用了许多复杂的httpsenwikipediaorgwikicomparison_of_text_editorsefbc89e4b8ade794a8e4ba86e8aeb8e5a49ae5a48de69d82e79a84-html-表格用到了颜色链接排序以及其他在写入-csv-文件之前需要忽略的-html-元素用-beautifulsoup-和-get_text-函数你可以用十几行代码完成这件事">网络数据采集的一个常用功能就是获取 HTML 表格并写入 CSV 文件。维基百科的文本编辑器对比词条（<a href="https://en.wikipedia.org/wiki/Comparison_of_text_editors%EF%BC%89%E4%B8%AD%E7%94%A8%E4%BA%86%E8%AE%B8%E5%A4%9A%E5%A4%8D%E6%9D%82%E7%9A%84">https://en.wikipedia.org/wiki/Comparison_of_text_editors）中用了许多复杂的</a> HTML 表格，用到了颜色、链接、排序，以及其他在写入 CSV 文件之前需要忽略的 HTML 元素。用 BeautifulSoup 和 <code>get_text()</code> 函数，你可以用十几行代码完成这件事：</h2>
+<h4 id="53--mysql">5.3、  MySQL</h4>
+<p><strong>关系型数据库？</strong></p>
+<p>关系型数据时，他们指的是那些并非孤立的数据——它们的属性与其他的数据是有关联的。</p>
+<h4 id="531--安装mysql">5.3.1、  安装MySQL</h4>
+<p>归根到底，MySQL 就是由一系列数据文件构成的，储存在你的远端服务器或本地的电脑上，里面包含了数据库存储的所有信息。MySQL 软件层提供了一种与数据交互的便捷操作方法。</p>
+<h4 id="532--基本命令">5.3.2、  基本命令</h4>
+<h4 id="创建数据库">创建数据库</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">scraping</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="使用某个数据库需要制定名称">使用某个数据库（需要制定名称）</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="n">USE</span><span class="w"> </span><span class="n">scraping</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">使用的上个命令的数据库</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="创建一个储存采集的网页的表">创建一个储存采集的网页的表</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">pages</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果会显示错误</p>
+<p>和其他数据库不同，<strong>MySQL数据表必须至少有一列，否则不能创建</strong></p>
+<p>为了在 MySQL 里定义字段（数据列），你必须在 <code>CREATE TABLE </code> 语句后面，把字段的定义放进一个带括号的、内部由逗号分隔的列表中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">content</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="n">id</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>每个字段定义由三部分组成：</p>
+<ul>
+<li>
+<p>名称（<code>id</code>、<code>title</code>、<code>created</code> 等）</p>
+</li>
+<li>
+<p>数据类型（<code>BIGINT(7)</code>、<code>VARCHAR</code>、<code>TIMESTAMP</code>）</p>
+</li>
+<li>
+<p>其他可选属性（<code>NOT NULL AUTO_INCREMENT</code>）</p>
+</li>
+</ul>
+<p>在字段定义列表的最后，还要定义一个“主键”（key）。MySQL 用这个主键来组织表的内容，便于后面快速查询。</p>
+<p>语句执行之后，你可以用 <code>DESCRIBE</code> 查看数据表的结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="w"> </span><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">pages</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+</span><span class="c1">---------+----------------+------+-----+-------------------+----------------+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w">           </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w">          </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+</span><span class="c1">---------+----------------+------+-----+-------------------+----------------+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NO</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">PRI</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">auto_increment</span><span class="w"> </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="n">title</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">              </span><span class="o">|</span><span class="w">                </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">              </span><span class="o">|</span><span class="w">                </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">timestamp</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NO</span><span class="w">   </span><span class="o">|</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="w"> </span><span class="o">|</span><span class="w">                </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+</span><span class="c1">---------+----------------+------+-----+-------------------+----------------+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="插入命令">插入命令</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s2">&#34;Test page title&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;This is some te
+</span></span></span><span class="line"><span class="cl"><span class="s2">st page content. It can be up to 10,000 characters long.&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>请不要在表中插入数据中带有id字段，这样很不好。让MySQL自己处理ID和timetamp字段</strong></p>
+<h4 id="选择命令">选择命令</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面这个不区分大小写的查询，会返回 <code>title</code> 字段里包含“test”的所有行（<code>%</code> 符号表示 MySQL 字符串通配符）的所有字段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s2">&#34;%test%&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你的表有很多字段，而你只想返回部分字段怎么办？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s2">&#34;%page content%&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就只会返回 <code>title</code> 字段包含“page content”的所有行的 <code>id</code> 和 <code>title</code> 两个字段了。</p>
+<h4 id="删除命令语法和select语句类似">删除命令语法和SELECT语句类似</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>MySQL中删除护具还不能恢复的，请谨慎操作</p>
+<h4 id="update命令">UPDATE命令</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="k">UPDATE</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;A new title&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="o">=</span><span class="s2">&#34;Some new content&#34;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>处理Unicode字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">scraping</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">utf8mb4_unicode_ci</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="k">CONVERT</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">utf8mb4_unicode_ci</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">utf8mb4_unicode_ci</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">utf8mb4</span><span class="w"> </span><span class="n">CO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">LLATE</span><span class="w"> </span><span class="n">utf8mb4_unicode_ci</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这四行语句改变的内容有：数据库、数据表，以及两个字段的默认编码都从 <code>utf8mb4</code>（严格说来也属于 Unicode，但是对大多数 Unicode 字符的支持都非常不好）转变成了 <code>utf8mb4_unicode_ci</code>。</p>
+<p>存储爬取维基百科的信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pymysql</span>
+</span></span><span class="line"><span class="cl"><span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">unix_socket</span><span class="o">=</span><span class="s1">&#39;/tmp/mysql.sock&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;mysql&#39;</span><span class="p">,</span> <span class="n">charset</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;USE scraping&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">store</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;INSERT INTO pages (title, content) VALUES (</span><span class="se">\&#34;</span><span class="si">%s</span><span class="se">\&#34;</span><span class="s2">,</span>
+</span></span><span class="line"><span class="cl">                \<span class="s2">&#34;</span><span class="si">%s</span><span class="se">\&#34;</span><span class="s2">)&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cur</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">getLinks</span><span class="p">(</span><span class="n">articleUrl</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://en.wikipedia.org&#34;</span><span class="o">+</span><span class="n">articleUrl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">title</span> <span class="o">=</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;h1&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content</span> <span class="o">=</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;mw-content-text&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">store</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;bodyContent&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">href</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;^(/wiki/)((?!:).)*$&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">links</span> <span class="o">=</span> <span class="n">getLinks</span><span class="p">(</span><span class="s2">&#34;/wiki/Kevin_Bacon&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">         <span class="n">newArticle</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&#34;href&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">print</span><span class="p">(</span><span class="n">newArticle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="n">links</span> <span class="o">=</span> <span class="n">getLinks</span><span class="p">(</span><span class="n">newArticle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="最后要注意的是finally-语句是在程序主循环的外面代码的最底下这样做可以保证无论程序执行过程中如何发生中断或抛出异常当然因为网络很复杂你得随时准备遭遇异常光标和连接都会在程序结束前立即关闭无论你是在采集网络还是处理一个打开连接的数据库用-tryfinally-都是一个好主意">最后要注意的是，<code>finally</code> 语句是在程序主循环的外面，代码的最底下。这样做可以保证，无论程序执行过程中如何发生中断或抛出异常（当然，因为网络很复杂，你得随时准备遭遇异常），光标和连接都会在程序结束前立即关闭。<strong>无论你是在采集网络，还是处理一个打开连接的数据库，用 <strong><strong><code>try...finally</code></strong></strong> 都是一个好主意。</strong></h2>
+<h2 id="第六章--读取文档">第六章、  读取文档</h2>
+<h4 id="61--读取csv文件">6.1  读取CSV文件</h4>
+<p>Python 的 <code>csv</code> 库主要是面向本地文件，就是说你的 CSV 文件得存储在你的电脑上。而进行网络数据采集的时候，很多文件都是在线的。不过有一些方法可以解决这个问题：</p>
+<ul>
+<li>
+<p>手动把 CSV 文件下载到本机，然后用 Python 定位文件位置；</p>
+</li>
+<li>
+<p>写 Python 程序下载文件，读取之后再把源文件删除；</p>
+</li>
+<li>
+<p>从网上直接把文件读成一个字符串，然后转换成一个 <code>StringIO</code> 对象，使它具有文件的属性。</p>
+</li>
+</ul>
+<p>虽然前两个方法也可以用，但是既然你可以轻易地把 CSV 文件保存在内存里，就不要再下载到本地占硬盘空间了。直接把文件读成字符串，然后封装成 <code>StringIO</code> 对象，让 Python 把它当作文件来处理，就不需要先保存成文件了。下面的程序就是从网上获取一个 CSV 文件（这里用的是 <a href="http://pythonscraping.com/files/MontyPythonAlbums.csv">http://pythonscraping.com/files/MontyPythonAlbums.csv</a> 里的 Monty Python 乐团的专辑列表），然后把每一行都打印到命令行里：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">csv</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://pythonscraping.com/files/MontyPythonAlbums.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dataFile</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">csvReader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">dataFile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csvReader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>显示结果很长，开始部分是这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s2">&#34;Monty Python&#39;s Flying Circus&#34;</span><span class="p">,</span> <span class="s1">&#39;1970&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;Another Monty Python Record&#39;</span><span class="p">,</span> <span class="s1">&#39;1971&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s2">&#34;Monty Python&#39;s Previous Record&#34;</span><span class="p">,</span> <span class="s1">&#39;1972&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从代码中你会发现 <code>csv.reader</code> 返回的 <code>csvReader</code> 对象是可迭代的，而且由 Python 的列表对象构成。因此，<code>csvReader</code> 对象可以用下面的方式接入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csvReader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;The album </span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\&#34;</span><span class="s2"> was released in &#34;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">The</span> <span class="n">album</span> <span class="s2">&#34;Name&#34;</span> <span class="n">was</span> <span class="n">released</span> <span class="ow">in</span> <span class="n">Year</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">album</span> <span class="s2">&#34;Monty Python&#39;s Flying Circus&#34;</span> <span class="n">was</span> <span class="n">released</span> <span class="ow">in</span> <span class="mi">1970</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">album</span> <span class="s2">&#34;Another Monty Python Record&#34;</span> <span class="n">was</span> <span class="n">released</span> <span class="ow">in</span> <span class="mi">1971</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">album</span> <span class="s2">&#34;Monty Python&#39;s Previous Record&#34;</span> <span class="n">was</span> <span class="n">released</span> <span class="ow">in</span> <span class="mi">1972</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另一种处理方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">csv</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://pythonscraping.com/files/MontyPythonAlbums.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dataFile</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dictReader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">dataFile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">dictReader</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dictReader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>csv.DictReader</code> 会返回把 CSV 文件每一行转换成 Python 的字典对象返回，而不是列表对象，并把字段列表保存在变量 <code>dictReader.fieldnames</code> 里，字段列表同时作为字典对象的键：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="s2">&#34;Monty Python&#39;s Flying Circus&#34;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="s1">&#39;1970&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Another Monty Python Record&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="s1">&#39;1971&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="s2">&#34;Monty Python&#39;s Previous Record&#34;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="s1">&#39;1972&#39;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第七章--数据清洗">第七章  数据清洗</h2>
+<p>由于错误的标点符号、大小写字母不一致、断行和拼写错误等问题，零乱的数据（dirty data）是网络中的大问题。本章将介绍一些工具和技术，通过改变代码的编写方式，帮你从源头控制数据零乱的问题，并且对已经进入数据库的数据进行清洗。</p>
+<h3 id="71--编写代码清洗数据">7.1  编写代码清洗数据</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ngrams</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 防止越界</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">-</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 当n=2时，每两个字符串添加到一个列表中</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">output</span>
+</span></span><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://en.wikipedia.org/wiki/Python_(programming_language)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;mw-content-text&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">ngrams</span> <span class="o">=</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">ngrams</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;2-grams count is: &#34;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ngrams</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;of&#39;</span><span class="p">,</span> <span class="s1">&#39;free&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;free&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;open-source&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;open-source&#39;</span><span class="p">,</span> <span class="s1">&#39;software&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们继续对之前的输出结果进行清理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ngrams</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">+&#39;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39; +&#39;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s2">&#34;UTF-8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;ascii&#34;</span><span class="p">,</span> <span class="s2">&#34;ignore&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 防止越界</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">-</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">output</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>里首先把内容中的换行符（或者多个换行符）替换成空格，然后把连续的多个空格替换成一个空格，确保所有单词之间只有一个空格。最后，把内容转换成 UTF-8 格式以消除转义字符。</p>
+<p>但是依旧存在下面这些问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;Pythoneers.[43][44]&#39;</span><span class="p">,</span> <span class="s1">&#39;Syntax&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;==&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;==&#39;</span><span class="p">,</span> <span class="s1">&#39; 2&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因此，需要再增加一些规则来处理数据。我们还可以制定一些规则让数据变得更规范：</p>
+<ul>
+<li>
+<p>剔除单字符的“单词”，除非这个字符是“i”或“a”；</p>
+</li>
+<li>
+<p>剔除维基百科的引用标记（方括号包裹的数字，如 [1]）；</p>
+</li>
+<li>
+<p>剔除标点符号</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">cleanInput</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">+&#39;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\[[0-9]*\]&#39;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39; +&#39;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="s2">&#34;UTF-8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;ascii&#34;</span><span class="p">,</span> <span class="s2">&#34;ignore&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cleanInput</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span> <span class="ow">or</span> <span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;i&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cleanInput</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cleanInput</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ngrams</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">input</span> <span class="o">=</span> <span class="n">cleanInput</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">-</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">output</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是还存在标签符号，我们用 <code>import string</code> 和 <code>string.punctuation</code> 来获取 Python 所有的标点符号。你可以在 Python 命令行看看标点符号有哪些：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">!</span><span class="s2">&#34;#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样得到的结果就很清晰了，但是依然存在重复的2-gram 序列</p>
+<p>程序把每个 2-gram 序列都加入了列表，没有统计过序列的频率。掌握 2-gram 序列的频率，而不只是知道某个序列是否存在，这不仅很有意思，而且有助于对比不同的数据清洗和数据标准化算法的效果。如果数据标准化成功了，那么唯一的 n-gram 序列数量就会减少，而 n-gram 序列的总数（任何一个 n-gram 序列和与之重复的序列被看成一个 n-gram 序列）不变。也就是说，同样数量的 n-gram 序列，经过去重之后“容量”（bucket）会减少。</p>
+<p>不过 Python 的字典是无序的，不能像数组一样直接对 n-gram 序列频率进行排序。字典内部元素的位置不是固定的，排序之后再次使用时还是会变化，除非你把排序过的字典里的值复制到其他类型中进行排序。在 Python 的 <code>collections</code> 库里面有一个 <code>OrderedDict</code> 可以解决这个问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">rom</span> <span class="n">collections</span> <span class="kn">import</span> <span class="nn">OrderedDict</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">ngrams</span> <span class="o">=</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ngrams</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">ngrams</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">ngrams</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样还不够，大小写会被程序当成不同的序列，也存在重复</p>
+<p>增加一行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 全部转成大写</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="测试">测试</h2>
+<h3 id="单元测试">单元测试</h3>
+<h4 id="什么是单元测试"><strong>什么是单元测试</strong></h4>
+<p>虽然不同公司的单元测试定义和实践方法大相径庭，但是一个单元测试通常包含以下特点。</p>
+<ul>
+<li>每个单元测试用于测试一个零件（component）功能的一个方面。例如，如果从银行账户取出一笔金额为负数的美元，那么单元测试就要对负数抛出适当的错误信息。</li>
+</ul>
+<p>通常，一个零件的所有单元测试都集成在同一个类（class）里。你可能有一个测试是针对从银行账户取出一笔金额为负数的美元，另一个测试是针对透支银行账户行为的单元测试。</p>
+<ul>
+<li>
+<p>每个单元测试都可以完全独立地运行，一个单元测试需要的所有启动（setup）和卸载（teardown）都必须通过这个单元测试本身去处理。单元测试不能对其他测试造成干扰，而且不论按何种顺序排列，它们都必须能够正常地运行。</p>
+</li>
+<li>
+<p>每个单元测试通常至少包含一个<strong>断言</strong>（assertion）。例如，一个单元测试可以判断 2+2 的和是 4。有时，一个单元测试也许只包含一个失败状态（failure state）。例如，有这样一个单元测试，如果一个异常没有被抛出，测试失败；如果每个异常都顺利抛出，测试通过。</p>
+</li>
+<li>
+<p>单元测试与生产代码是分离的。虽然它们需要导入然后在待测试的代码中使用，但是它们一般被保留在独立的类和目录中。</p>
+</li>
+</ul>
+<h4 id="python单元测试">python单元测试</h4>
+<p>Python 的单元测试模块 <code>unittest</code>，所有标准版 Python 安装后都有。只要先导入模块然后继承 <code>unittest.TestCase</code> 类，就可以实现下面的功能：</p>
+<ul>
+<li>
+<p>为每个单元测试的开始和结束提供 <code>setUp</code> 和 <code>tearDown</code> 函数</p>
+</li>
+<li>
+<p>提供不同类型的“断言”语句让测试成功或失败</p>
+</li>
+<li>
+<p>把所有以 <code>test_</code> 开头的函数当作单元测试运行，忽略不带 <code>test_</code> 的函数</p>
+</li>
+</ul>
+<p>一个简单的示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">unittest</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestAddition</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Setting up the test&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Tearing down the test&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_twoPlusTwo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span> <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bing</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+            <span class="next-text nav-default">在Python中序列化数据</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://acm-py.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2018-2022 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>bing</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 阿炳-一个热衷于折腾和技术的Coder</title>
+    <link>https://acm-py.github.io/post/</link>
+    <description>Recent content in Posts on 阿炳-一个热衷于折腾和技术的Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 08 Mar 2020 15:36:11 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>网络信息采集读书笔记</title>
+      <link>https://acm-py.github.io/post/%E5%9C%A8python%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Sun, 08 Mar 2020 15:36:11 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/%E5%9C%A8python%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE/</guid>
+      <description>python网络采集读书笔记 第一章 1 2 import urllib html = ulropen(&amp;#34;http://www.pythonscraping.com/page/page1.html&amp;#34;) 网页是十分复杂的，网页数据格式更是如此。 所以让我们来看看import 之后的这行代码可能会发生</description>
+    </item>
+    
+    <item>
+      <title>在Python中序列化数据</title>
+      <link>https://acm-py.github.io/post/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 03 Feb 2020 14:17:21 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description>序列化数据 常用的模块是pickle。 特点： 用C编写，速度快。 可以存储什么? 所有原生Python 数据结构 支持 布尔值，整数，浮点数，复数，字符串</description>
+    </item>
+    
+  </channel>
+</rss>

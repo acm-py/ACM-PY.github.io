@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>OS知识点总结 - 阿炳-一个热衷于折腾和技术的Coder</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="bing" /><meta name="description" content="cpu -&amp;gt; 抽象成进程 磁盘 -&amp;gt; 文件 内存 -&amp;gt; 地址空间 面向外面的 -&amp;gt; shell 面向内面的 -&amp;gt; kernel kernel 组成部分: cpu 调度器 物理内存管理 虚拟内存管理 文件系统管理 中断处理与设备驱动" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.93.0 with theme even" />
+
+
+<link rel="canonical" href="https://acm-py.github.io/post/os%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="OS知识点总结" />
+<meta property="og:description" content="cpu -&gt; 抽象成进程 磁盘 -&gt; 文件 内存 -&gt; 地址空间 面向外面的 -&gt; shell 面向内面的 -&gt; kernel kernel 组成部分: cpu 调度器 物理内存管理 虚拟内存管理 文件系统管理 中断处理与设备驱动" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://acm-py.github.io/post/os%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-10-02T17:29:10+08:00" />
+<meta property="article:modified_time" content="2020-10-02T17:29:10+08:00" />
+
+<meta itemprop="name" content="OS知识点总结">
+<meta itemprop="description" content="cpu -&gt; 抽象成进程 磁盘 -&gt; 文件 内存 -&gt; 地址空间 面向外面的 -&gt; shell 面向内面的 -&gt; kernel kernel 组成部分: cpu 调度器 物理内存管理 虚拟内存管理 文件系统管理 中断处理与设备驱动"><meta itemprop="datePublished" content="2020-10-02T17:29:10+08:00" />
+<meta itemprop="dateModified" content="2020-10-02T17:29:10+08:00" />
+<meta itemprop="wordCount" content="13158">
+<meta itemprop="keywords" content="知识点总结," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OS知识点总结"/>
+<meta name="twitter:description" content="cpu -&gt; 抽象成进程 磁盘 -&gt; 文件 内存 -&gt; 地址空间 面向外面的 -&gt; shell 面向内面的 -&gt; kernel kernel 组成部分: cpu 调度器 物理内存管理 虚拟内存管理 文件系统管理 中断处理与设备驱动"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">阿炳</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">阿炳</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">OS知识点总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-02 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"> 操作系统 </a>
+            </div>
+          <span class="more-meta"> 约 13158 字 </span>
+          <span class="more-meta"> 预计阅读 27 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#现代计算机的结构">现代计算机的结构</a></li>
+          </ul>
+        </li>
+        <li><a href="#计算机的层次和编程语言">计算机的层次和编程语言</a>
+          <ul>
+            <li><a href="#程序翻译和程序解释">程序翻译和程序解释</a></li>
+          </ul>
+        </li>
+        <li><a href="#计算机的计算单位">计算机的计算单位</a>
+          <ul>
+            <li><a href="#容量单位">容量单位</a></li>
+            <li><a href="#速度单位">速度单位</a></li>
+            <li><a href="#字符与编码集">字符与编码集</a></li>
+          </ul>
+        </li>
+        <li><a href="#计算机组成">计算机组成</a>
+          <ul>
+            <li><a href="#计算机的总线与io设备">计算机的总线与IO设备</a></li>
+            <li><a href="#计算机的存储器">计算机的存储器</a></li>
+            <li><a href="#计算机的cpu">计算机的CPU</a></li>
+          </ul>
+        </li>
+        <li><a href="#进制">进制</a>
+          <ul>
+            <li><a href="#为什么需要补码">为什么需要补码？</a></li>
+            <li><a href="#反码就是为了实现2做到的">反码就是为了实现2做到的</a></li>
+          </ul>
+        </li>
+        <li><a href="#定点数和浮点数">定点数和浮点数</a>
+          <ul>
+            <li><a href="#定点数的表示方法">定点数的表示方法</a></li>
+            <li><a href="#浮点数的表示方法">浮点数的表示方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#定点数的加减法">定点数的加减法</a>
+          <ul>
+            <li><a href="#浮点数的加减法">浮点数的加减法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#操作系统篇">操作系统篇</a>
+      <ul>
+        <li><a href="#操作系统的演变">操作系统的演变</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#操作系统概览">操作系统概览</a>
+          <ul>
+            <li><a href="#什么是操作系统">什么是操作系统</a></li>
+            <li><a href="#为什么需要操作系统">为什么需要操作系统</a></li>
+            <li><a href="#操作系统的基本功能">操作系统的基本功能</a></li>
+            <li><a href="#操作系统的相关概念">操作系统的相关概念</a></li>
+          </ul>
+        </li>
+        <li><a href="#进程">进程</a>
+          <ul>
+            <li><a href="#进程管理之进程实体">进程管理之进程实体</a></li>
+            <li><a href="#进程管理之五状态模型">进程管理之五状态模型</a></li>
+            <li><a href="#进程管理之进程同步">进程管理之进程同步</a></li>
+            <li><a href="#linux-进程管理">Linux 进程管理</a></li>
+            <li><a href="#作业管理之进程调度">作业管理之进程调度</a></li>
+          </ul>
+        </li>
+        <li><a href="#作业管理">作业管理</a>
+          <ul>
+            <li><a href="#作业管理之死锁">作业管理之死锁</a></li>
+          </ul>
+        </li>
+        <li><a href="#存储管理">存储管理</a>
+          <ul>
+            <li><a href="#存储管理之内存分配与回收-物理内存角度">存储管理之内存分配与回收 （物理内存角度）</a></li>
+            <li><a href="#存储管理之段页式存储管理操作系统角度进程角度">存储管理之段页式存储管理（操作系统角度，进程角度）</a></li>
+            <li><a href="#存储管理之虚拟内存">存储管理之虚拟内存</a></li>
+            <li><a href="#linux的存储管理">Linux的存储管理</a></li>
+          </ul>
+        </li>
+        <li><a href="#文件管理">文件管理</a>
+          <ul>
+            <li><a href="#操作系统的文件文理">操作系统的文件文理</a></li>
+            <li><a href="#辅存的存储空间分配">辅存的存储空间分配</a></li>
+            <li><a href="#辅存的存储空间分配-1">辅存的存储空间分配</a></li>
+            <li><a href="#目录管理">目录管理</a></li>
+            <li><a href="#linux文件基本操作">Linux文件基本操作</a></li>
+            <li><a href="#linux文件系统">Linux文件系统</a></li>
+          </ul>
+        </li>
+        <li><a href="#设备管理">设备管理</a>
+          <ul>
+            <li><a href="#操作系统的设备管理">操作系统的设备管理</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>cpu  -&gt; 抽象成进程
+磁盘 -&gt; 文件
+内存 -&gt; 地址空间
+面向外面的 -&gt; shell
+面向内面的 -&gt; kernel</p>
+<p>kernel 组成部分:
+cpu 调度器
+物理内存管理
+虚拟内存管理
+文件系统管理
+中断处理与设备驱动</p>
+<p>Kernel 特征:
+并发(一段时间内多个程序)
+计算机系统同时存在多个运行的程序,需要OS管理和调度
+共享
+&ldquo;同时&quot;访问
+互斥共享
+虚拟
+利用多道程序设计技术,让每个用户都觉得有一个计算机专门为他服务</p>
+<p>冯诺依曼体系</p>
+<ul>
+<li>将程序指令和数据一起存储的计算机设计概念结构</li>
+<li>冯诺依曼瓶颈：CPU 和存储器速率自建的问题无法调和（因为在冯诺依曼体系中，他们是分开的）
+CPU 经常空转，等待数据传输</li>
+</ul>
+<h3 id="现代计算机的结构">现代计算机的结构</h3>
+<p>将存储器，控制器，运算器合在一起 = cpu
+以存储器为核心的计算机结构（冯诺依曼是以运算器为核心的计算机结构）</p>
+<h2 id="计算机的层次和编程语言">计算机的层次和编程语言</h2>
+<h3 id="程序翻译和程序解释">程序翻译和程序解释</h3>
+<p>较高级的计算机语言L1 -&gt; 较低级的计算机语言L0
+L1 是 L0的输入</p>
+<p><img src="https://i.loli.net/2021/08/09/zXkfdJ7HZ5e2Qtl.png" alt="计算机层次"></p>
+<h4 id="硬件逻辑层">硬件逻辑层：</h4>
+<ul>
+<li>门、触发器等逻辑电路组成</li>
+<li>属于电子工程的领域</li>
+</ul>
+<h4 id="微程序机器层">微程序机器层：</h4>
+<ul>
+<li>编程语言是微指令集</li>
+<li>微指令所组成的微程序直接交由硬件执 行</li>
+</ul>
+<h4 id="传统机器层">传统机器层：</h4>
+<ul>
+<li>编程语言是CPU指令集</li>
+<li>编程语言和硬件是直接相关</li>
+<li>不同架构的CPU使用不同的CPu指令集</li>
+</ul>
+<p>一条机器指令 对应 一个微程序
+一个微程序 对应 一组微指令</p>
+<p>微指令 &lt; 微程序 = 机器指令</p>
+<h4 id="汇编语言层">汇编语言层</h4>
+<ul>
+<li>编程语言是汇编语言</li>
+<li>汇编语言可以翻译成可直接执行的机器语言</li>
+<li>完成翻译的过程的程序就是汇编器</li>
+</ul>
+<h4 id="高级语言层">高级语言层</h4>
+<p>没什么好说的</p>
+<h4 id="应用层">应用层</h4>
+<p>程序例如 office word等</p>
+<h2 id="计算机的计算单位">计算机的计算单位</h2>
+<h3 id="容量单位">容量单位</h3>
+<ul>
+<li>物理层面，高低电平记录信息</li>
+<li>理论上只认识0/1两种转台</li>
+<li>0/1能够表示的内容太少了，需要更大的容量表示方法
+字节 1byte = 8bits
+千字节 kb = 1024b
+兆字节 mn = 1024kb
+吉字节 1024mb</li>
+</ul>
+<h3 id="速度单位">速度单位</h3>
+<ul>
+<li>网络速度 100M宽带
+100M = 100M/s
+100M/s = 100Mbps = 100Mbit/s
+100Mbit/s = 100/8 MB/s = 12.5M/s</li>
+<li>CPU速度单位</li>
+<li>CPU的时钟频率</li>
+<li>HZ 每秒钟周期性变动重复次数的计量</li>
+</ul>
+<h3 id="字符与编码集">字符与编码集</h3>
+<h4 id="ascii码">ASCII码</h4>
+<ul>
+<li>使用7个bits就可以完全表示ASCII码</li>
+<li>包含95个可打印字符</li>
+<li>33个不可打印字符(包括控制字符)
+33 + 95 = 128 = 2 **7</li>
+</ul>
+<p>但是很多数学符号都无法表示</p>
+<p>然后就将 7bits -&gt; 8bits
+被称为 Extended ASCII码</p>
+<p><strong>字符编码集的国际化</strong></p>
+<ul>
+<li>GB2312 中文编码集 需要</li>
+<li>GBK 向下兼容GB2312，向上支持国际ISO标准</li>
+<li>Unicode：统一码，万国码，单一码</li>
+<li>UTF-8 以字节位单位编码</li>
+<li>中文windows 系统默认使用GBK编码</li>
+</ul>
+<h2 id="计算机组成">计算机组成</h2>
+<h3 id="计算机的总线与io设备">计算机的总线与IO设备</h3>
+<h4 id="计算机的总线">计算机的总线</h4>
+<p>USB = Universal Serial Bus 通用串行总线</p>
+<h5 id="总线的概述">总线的概述</h5>
+<p><strong>总线是什么</strong></p>
+<ul>
+<li>提供了对外链接的接口</li>
+<li>不同设备可以通过USB接口进行连接</li>
+<li>连接的标准，促使外围设备接口的统一
+<strong>总线是为了解决什么问题</strong>
+为了解决不同设备的之间的通信问题
+<strong>总线如何使用</strong>
+没有IO总线
+<img src="https://i.loli.net/2021/08/10/nNpv1zQ467Ycrg9.png" alt="没有IO总线">
+有了Io总线之后
+<img src="https://i.loli.net/2021/08/10/1CjEKYtGsHlqy43.png" alt="有了IO总线"></li>
+</ul>
+<h5 id="总线的分类">总线的分类</h5>
+<ul>
+<li>片内总线</li>
+<li><img src="https://i.loli.net/2021/08/10/lxZJjqSmENePVQz.png" alt="片内总线">
+<ul>
+<li>芯片内部的总线</li>
+<li>寄存器与寄存器之间</li>
+<li>寄存器与控制器、运算器之间
+高集成度芯片内部的信息传输线</li>
+</ul>
+</li>
+<li>系统总线
+<ul>
+<li>系统总线</li>
+<li>地址总线</li>
+<li>控制总线
+CPU、主内存、IO设备、各组件之间的信息传输线
+<img src="https://i.loli.net/2021/08/10/lbz8MfJoxskC2jT.png" alt="系统总线">
+一般和CPU位数相同</li>
+</ul>
+</li>
+<li>数据总线
+<ul>
+<li>双向传输各个部件的数据信息</li>
+<li>数据总线的位数（总线宽度）是数据总线的重要参数</li>
+</ul>
+</li>
+<li>地址总线
+<ul>
+<li>指定源数据或目的数据在内存中的地址</li>
+<li>地址总线的位数和存储单元的位数相关
+地址总线位数 = n， 寻址范围：0 ~ 2**n</li>
+</ul>
+</li>
+<li>控制总线
+<ul>
+<li>控制总线是用来发出各种控制信号的传输线</li>
+<li>控制信号经由控制总线从一个组件发给另外一个组件</li>
+<li>控制总线可以监视不同组件之间的状态（就绪/未就绪）
+<strong>总线的仲裁</strong></li>
+</ul>
+</li>
+<li>为什么需要总线的仲裁？
+假设当主存和硬盘以及IO设备交换数据，且硬盘和IO设备已经都就绪了。这个时候总线应该是给硬盘使用还是给IO设备使用呢？
+这个时候就需要仲裁器，防止设备冲突。
+解决不同设备需要使用总线的优先顺序的问题
+为了解决总线使用权的冲突问题</li>
+<li>总线仲裁的办法
+<ul>
+<li>链式查询</li>
+<li>计时器定时查询</li>
+<li>独立请求</li>
+</ul>
+</li>
+<li>链式查询</li>
+<li><img src="https://i.loli.net/2021/08/10/eHdaRhGAcVxEMwf.png" alt="链式查询">
+<ul>
+<li>优点：电路复杂度低，仲裁方式简单（串联起来就行了）</li>
+<li>坏处：优先级低的设备很难获得总线使用权</li>
+<li>坏处：对电路故障敏感（串联电路）</li>
+<li>按照链式的顺序判断优先级（如果该设备申请了仲裁的话）</li>
+</ul>
+</li>
+<li>计时器定时查询
+<ul>
+<li>仲裁控制器对设备编号并使用计数器累积计数</li>
+<li>接收到仲裁信号后，往所有设备发出计数值</li>
+<li>当技术值与设备编号一致时则获得总线使用权（设备编号越小，优先级越高，如果超出了呢？）
+<img src="https://i.loli.net/2021/08/10/CmFbkXIswrScWu8.png" alt="计时器定时查询"></li>
+</ul>
+</li>
+<li>独立请求
+<ul>
+<li>每个设备均有总线独立连接仲裁器</li>
+<li>设备可单独向仲裁器发送请求和接收请求</li>
+<li>当同时收到多个请求信号，仲裁器有权按优先级分配使用权</li>
+<li>好处：响应速度快，优先顺序可以动态改变</li>
+<li>设备连线多，总线控制复杂
+<img src="https://i.loli.net/2021/08/10/jdYt5TvRE7aOZC9.png" alt="独立请求"></li>
+</ul>
+</li>
+</ul>
+<h4 id="计算机的输入输出设备">计算机的输入/输出设备</h4>
+<h5 id="常见的输入输出设备">常见的输入输出设备</h5>
+<ol>
+<li>字符输入设备
+<ul>
+<li>键盘</li>
+</ul>
+</li>
+<li>图像输入设备
+<ul>
+<li>鼠标</li>
+<li>数位板</li>
+<li>扫描仪</li>
+</ul>
+</li>
+<li>图像输出设备
+<ul>
+<li>显示器</li>
+<li>打印机</li>
+<li>投影仪</li>
+</ul>
+</li>
+</ol>
+<h5 id="输入输出接口的通用设计">输入输出接口的通用设计</h5>
+<ol>
+<li>向设备发送数据</li>
+<li>读取设备中的数据</li>
+<li>判断设备是否被占用</li>
+<li>设备是否已经连接</li>
+<li>设备是否已经启动
+所以<strong>通用设计</strong></li>
+</ol>
+<ul>
+<li>数据线
+<ul>
+<li>是IO设备与主机之间进行数据交换的传送线</li>
+<li>单向传输数据线</li>
+<li>双向传输数据线</li>
+</ul>
+</li>
+<li>状态线
+<ul>
+<li>IO设备状态向主机报告的信号线</li>
+<li>查询设备是否已经正常连接并就绪</li>
+<li>查询设备是否已经被占用（其他进程）</li>
+</ul>
+</li>
+<li>命令线
+<ul>
+<li>CPU向设备发送命令的信号线</li>
+<li>发送读写信号</li>
+<li>发送启动停止信号</li>
+</ul>
+</li>
+<li>设备选择线
+<ul>
+<li>主机选择IO设备进行操作的信号线</li>
+<li>对连在总线上的设备进行选择</li>
+</ul>
+</li>
+</ul>
+<h5 id="cpu与io设备的通信">CPU与IO设备的通信</h5>
+<ol>
+<li>程序中断
+<ul>
+<li>当外围IO设备就绪的时候，向CPU发出中断信号</li>
+<li>CPU有专门的电路响应中断信号（收到信号之后就会停止当前的工作（记录工作状态），先去执行外围IO设备的 那份工作）
+<img src="https://i.loli.net/2021/08/10/6ltGHNs2pFdcJZy.png" alt="程序中断的例子">
+提供低速设备通知CPU的一种异步的方式
+CPU可以高速运转同时兼顾低速设备的响应</li>
+</ul>
+</li>
+<li>DMA（直接存储器访问）
+<ul>
+<li>DMA直接连接主存与IO设备</li>
+<li>DMA工作的时候不需要CPU的参与</li>
+<li>硬盘、外置显卡都有DMA设备</li>
+<li>当主存和IO设备交换信息的时候，不需要中断CPU（提高CPU的效率）
+<img src="https://i.loli.net/2021/08/10/zaCbsEWVAhX6vrm.png" alt="DMA的工作"></li>
+</ul>
+</li>
+</ol>
+<p>这原因就是因为 CPU速度和IO设备速度不一致导致的
+DMA是个硬件设备</p>
+<h3 id="计算机的存储器">计算机的存储器</h3>
+<h4 id="计算机的存储器概览">计算机的存储器概览</h4>
+<h5 id="存储器分类">存储器分类</h5>
+<ul>
+<li>按存储介质
+<ul>
+<li>半导体存储器（内存，u盘，固态硬盘）</li>
+<li>磁存储器（磁盘，磁带）</li>
+</ul>
+</li>
+<li>按存取方式分类
+<ul>
+<li>随机存储器（RAM随机读取，与位置无关）</li>
+<li>串行存储器（与位置有关，按顺序查找）</li>
+<li>只读存储器（ROm）</li>
+</ul>
+</li>
+</ul>
+<h5 id="存储器的层次结构">存储器的层次结构</h5>
+<ul>
+<li>缓存-主存层次
+<ul>
+<li>缓存 （CPU的缓存和寄存器）主存辅存</li>
+<li>原理： 局部性原理</li>
+<li>实现：在CPU和主存之间增加一层速度快（容量小）的Cache</li>
+<li>目的：解决主存速度不足的问题
+局部性原理：
+是指CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中（这个统计得到的吧）</li>
+</ul>
+</li>
+<li>主存-辅存层次
+<ul>
+<li>原理：局部性原理</li>
+<li>实现：主存之外增加辅助存储器（磁盘、SD、U盘）</li>
+<li>目的：解决主存容量不足的问题</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2021/08/10/YijNUbvXKWPdokc.png" alt="层次结构"></p>
+<h4 id="计算机的高速存储器">计算机的高速存储器</h4>
+<h5 id="高速缓存的工作原理">高速缓存的工作原理</h5>
+<ul>
+<li>字：是指存放在一个存储单元中的二进制代码组合</li>
+<li>字块：存储在连续的存储单元中而被看做是一个单元的一组字
+<img src="https://i.loli.net/2021/08/10/W36oUJVHOAb4ZEq.png" alt="字和字块">
+<strong>主存寻址过程</strong></li>
+<li>字的地址包含两个部分</li>
+<li>前m位指定字块的地址</li>
+<li>后b位指定字在字块中的地址
+<img src="https://i.loli.net/2021/08/10/7zD8WQ4aUoIsr9i.png" alt="例题">
+<strong>命中率</strong>
+<img src="https://i.loli.net/2021/08/10/QYlxJjbRwtEr5p9.png" alt="访问效率和命中率">
+<strong>访问效率</strong>
+<strong>平均访问时间</strong>
+<img src="https://i.loli.net/2021/08/10/FZvJhWXpPNGQ8aV.png" alt="两个公式"></li>
+</ul>
+<p>为了保证高命中率和高访问效率，我们需要良好的缓存替换策略</p>
+<h5 id="高速缓存的替换策略">高速缓存的替换策略</h5>
+<ul>
+<li>高速缓存的替换时机：
+<ul>
+<li>当CPU需要的数据不在高速缓存中，需要从主存加载所需数据时（即未命中时） ，这个时候就应该把主存中的数据替换到高速缓存中去。
+<strong>四种替换策略（淘汰策略）</strong></li>
+</ul>
+</li>
+<li>随机算法</li>
+<li>先进先出算法（FIFO）：
+<ul>
+<li>把高速缓存看做是一个先进先出的队列</li>
+<li>优先替换最先进入队列的字块</li>
+</ul>
+</li>
+<li>最不经常使用算法（LFU）
+<ul>
+<li>优先淘汰最不经常使用的字块</li>
+<li>需要额外的空间记录字块的使用频率</li>
+</ul>
+</li>
+<li>最近最少使用算法（LRU）
+<ul>
+<li>优先淘汰一段时间内没有使用的字块</li>
+<li>有多种实现方法，一般使用双向链表</li>
+<li>把当前访问节点置于链表前面（保证链表头部节点是最近使用过的）</li>
+</ul>
+</li>
+</ul>
+<h4 id="计算机的主存储器与辅助存储器">计算机的主存储器与辅助存储器</h4>
+<h5 id="主存储器">主存储器</h5>
+<p><img src="https://i.loli.net/2021/08/10/itDpEsbIXv94wHz.png" alt=""></p>
+<h5 id="辅助存储器">辅助存储器</h5>
+<p>磁盘
+<img src="https://i.loli.net/2021/08/10/yB8XS1TwA5iJ9qC.png" alt="">
+盘面的平面图
+<img src="https://i.loli.net/2021/08/10/KAzWuElZkHGS5tY.png" alt=""></p>
+<ul>
+<li>表面是可磁化的硬磁特性材料</li>
+<li>移动磁头径向运动读取磁道信息</li>
+</ul>
+<h5 id="调度算法">调度算法</h5>
+<ol>
+<li>先来先服务算法 ： 按顺序访问进程的磁道读写需求</li>
+<li>最短寻道时间优先</li>
+<li>扫描算法(电梯算法)：
+<ul>
+<li>每次只往一个方向移动</li>
+<li>每次移动到末尾反向</li>
+</ul>
+</li>
+<li>循环扫描算法
+<ul>
+<li>读取只能往一个方向读取
+<img src="https://i.loli.net/2021/08/10/cNhzCMga4lnr9Ai.png" alt="循环扫描算法"></li>
+</ul>
+</li>
+</ol>
+<h3 id="计算机的cpu">计算机的CPU</h3>
+<h4 id="计算机的指令系统">计算机的指令系统</h4>
+<h5 id="机器指令的形式">机器指令的形式</h5>
+<ul>
+<li>
+<p>机器指令由两部分组成， 操作码字段 + 地址码字段</p>
+</li>
+<li>
+<p>操作码指明指令所要完成的操作</p>
+</li>
+<li>
+<p>操作码的位数反应了机器的操作种类</p>
+</li>
+<li>
+<p>地址码给出操作数或者操作数的地址</p>
+</li>
+<li>
+<p>根据地址码的不同分类</p>
+<ul>
+<li>三地址指令
+<img src="https://i.loli.net/2021/08/10/9oSgXW42zHvMTsB.png" alt="三地址指令">
+(addr1)OP(addr2) -&gt; (addr3)
+结果放在addr3里面</li>
+<li>二地址指令
+<img src="https://i.loli.net/2021/08/10/g4mY3TsXkPyVcw1.png" alt="二地址指令"></li>
+<li>一地址指令
+<img src="https://i.loli.net/2021/08/10/5JNhOdu18sUVg3a.png" alt=""></li>
+</ul>
+<ol>
+<li>自己对自己的操作</li>
+<li>一个操作数做默认的行为例如 ++
+其实还存在零地址指令</li>
+</ol>
+<ul>
+<li>在机器指令中无地址码</li>
+<li>空操作、停机操作、中断返回</li>
+</ul>
+</li>
+</ul>
+<h5 id="机器指令的操作类型">机器指令的操作类型</h5>
+<ul>
+<li>数据传输类型
+<ul>
+<li>寄存器之间、寄存器于存储单元、存储单元之间传送</li>
+<li>数据读写、交换地址数据、清零置一等操作</li>
+</ul>
+</li>
+<li>算数逻辑操作
+<ul>
+<li>操作数之间加减乘除运算</li>
+<li>操作数的与或非等逻辑位运算</li>
+</ul>
+</li>
+<li>移位操作类型
+<ul>
+<li>数据左移、数据右移</li>
+<li>完成数据在算数逻辑单元的必要操作</li>
+</ul>
+</li>
+<li>控制指令
+<ul>
+<li>等待指令、停机指令、空操作指令、中断指令。</li>
+</ul>
+</li>
+</ul>
+<h5 id="机器指令的寻址方式">机器指令的寻址方式</h5>
+<ul>
+<li>指令寻址
+<ul>
+<li>顺序寻址</li>
+<li>跳跃寻址</li>
+</ul>
+</li>
+<li>数据寻址
+<ul>
+<li>立即寻址
+<img src="https://i.loli.net/2021/08/10/Nf3ms7FKalgpVSH.png" alt="立即寻址"></li>
+<li>直接寻址
+<img src="https://i.loli.net/2021/08/10/S3Zs8KJzATv6lqf.png" alt="直接寻址"></li>
+<li>间接寻址
+<img src="https://i.loli.net/2021/08/10/i58lgD7OnBkvGXS.png" alt="间接寻址"></li>
+<li>综合对比
+<img src="https://i.loli.net/2021/08/10/3gaMzf7WD5lJTv8.png" alt="三者对比"></li>
+</ul>
+</li>
+</ul>
+<h4 id="计算机的运算器">计算机的运算器</h4>
+<p>运算器是用来进行数据运算加工的</p>
+<h5 id="数据缓冲器">数据缓冲器</h5>
+<ul>
+<li>分为输入/输出缓冲</li>
+<li>输入缓冲暂时存放外设送过来的数据</li>
+<li>输出缓冲暂时存放送往外设的数据</li>
+</ul>
+<h5 id="alu-算数逻辑单元">ALU 算数逻辑单元</h5>
+<ul>
+<li>运算器的主要组成</li>
+<li>常见的位运算</li>
+<li>算术运算
+<img src="https://i.loli.net/2021/08/10/CBtmIDThz13agiW.png" alt="ALU组成"></li>
+</ul>
+<h5 id="状态字寄存器">状态字寄存器</h5>
+<ul>
+<li>存放运算状态（条件码、进位、溢出、结果正负等）</li>
+<li>存放运算控制信息（调试跟踪标记位、允许中断位）</li>
+</ul>
+<h5 id="通用寄存器">通用寄存器</h5>
+<p>和控制器的差不多</p>
+<ul>
+<li>可保存ALU运算中间结果</li>
+<li>用域暂时存放或传送数据或指令</li>
+<li>容量比一般的专用寄存器大
+<img src="https://i.loli.net/2021/08/10/tdzukE4KODTXCUy.png" alt="运算器的组成"></li>
+</ul>
+<h4 id="计算机的控制器">计算机的控制器</h4>
+<p>控制器是用来协作和控制计算机运行的
+<img src="https://i.loli.net/2021/08/10/cNWgAUivPqQKhYF.png" alt="控制器的组成"></p>
+<h5 id="程序计数器">程序计数器</h5>
+<ul>
+<li>程序计数器用来存储下一条指令的地址</li>
+<li>循环从程序计数器中拿出指令</li>
+<li>当指令被拿出时，指向下一条指令</li>
+</ul>
+<h5 id="时序发生器">时序发生器</h5>
+<ul>
+<li>电气工程领域，用于发送时序脉冲</li>
+<li>CPU依据不同的时序脉冲有节奏的进行工作</li>
+</ul>
+<h5 id="指令译码器">指令译码器</h5>
+<ul>
+<li>指令译码器时控制器的主要部件之一</li>
+<li>计算机指令由操作码和地址码组成</li>
+<li>翻译操作码对应的操作以及控制传输地址对应的数据</li>
+</ul>
+<h5 id="指令寄存器">指令寄存器</h5>
+<ul>
+<li>指令寄存器也是控制器的主要部件之一</li>
+<li>从主存或高速缓存取计算机指令</li>
+</ul>
+<h5 id="主存地址寄存器">主存地址寄存器</h5>
+<ul>
+<li>保存当前CPU正要访问的内存单元的地址</li>
+</ul>
+<h5 id="主存数据寄存器">主存数据寄存器</h5>
+<ul>
+<li>保存CPU正要读或写的主存数据</li>
+</ul>
+<h5 id="通用寄存器-1">通用寄存器</h5>
+<ul>
+<li>用于存放或传送数据或指令</li>
+<li>可保存ALU的运算中间结果</li>
+<li>容量比一般的寄存器要大</li>
+</ul>
+<h4 id="指令执行过程">指令执行过程</h4>
+<ol>
+<li>取指令</li>
+<li>分析指令</li>
+<li>执行指令
+<img src="https://i.loli.net/2021/08/10/KlN1bdoJmeu6DSy.png" alt="执行过程"></li>
+<li>程序计数器 缓存101指令（这个时候，程序计数器只知道这个指令的地址，不知道指令的内容）</li>
+<li>通过总线将指令101内容拿出来</li>
+<li>通过片内总线，指令寄存器将缓存指令内容（操作码，地址码）但是指令寄存器依然不知道指令的意义。</li>
+<li>指令寄存器将指令内容发送到指令译码器（片内总线</li>
+<li>指令译码器进行译码，发出控制信号通过片内总线来到运算器里面</li>
+<li>将R0数据加载到ALU里面去，然后送到数据总线，再由数据总线送到数据缓存器。</li>
+<li>数据缓存器再将数据发送到寄存器中。
+<img src="https://i.loli.net/2021/08/10/Gzmy4kRNw82Zpvg.png" alt="执行过程">
+取指令由控制器工作
+执行指令由运算器工作
+因此CPU的综合利用率并不高</li>
+</ol>
+<h4 id="cpu的流水线设计">CPU的流水线设计</h4>
+<p>就是因为CPU的综合利用率不高，我们想出了CPU的流水线设计。（上面那种时串行）</p>
+<ul>
+<li>类似工厂的装配线</li>
+<li>工厂的装配线使得多个产品可以同时被加工</li>
+<li>在同一个时刻，不同产品均位于不同的加工阶段</li>
+</ul>
+<p><img src="https://i.loli.net/2021/08/10/sNUPSfY4RqbOB1T.png" alt="流水线设计"></p>
+<p>流水线的效率是串行的三倍
+<img src="https://i.loli.net/2021/08/10/K8UvNuV476Sbmad.png" alt="效率分析"></p>
+<h2 id="进制">进制</h2>
+<h3 id="为什么需要补码">为什么需要补码？</h3>
+<p>因为0 在原码中有两种表示
+<img src="https://i.loli.net/2021/08/10/PjCNAmMkgqsUlS8.png" alt="补码表示定义"></p>
+<ol>
+<li>
+<p>希望使用正数代表负数的方法</p>
+</li>
+<li>
+<p>使用加法操作代替减法的操作（没有实现）</p>
+</li>
+</ol>
+<h3 id="反码就是为了实现2做到的">反码就是为了实现2做到的</h3>
+<p>反码的目的是找出原码和补码之间的规律，消除转换过程中的减法</p>
+<p><img src="https://i.loli.net/2021/08/10/WqYEZfi9eDPGL83.png" alt="反码定义">
+对负数而言 补码= 反码 - 1（直接-1，不考虑符号位）实质上是 反码 + 1 （因为是负数）</p>
+<p>对负数而言 反码 = 原码 按位置取反（除符号位以外）</p>
+<h2 id="定点数和浮点数">定点数和浮点数</h2>
+<h3 id="定点数的表示方法">定点数的表示方法</h3>
+<ul>
+<li>小数点固定在某个位置的数，称之为定点数
+如果既不是纯小数，也不是纯整数
+这个时候就需要<strong>乘以比例因子以满足定点数保存格式</strong>
+下面这种就不需要写出小数点
+<img src="https://i.loli.net/2021/08/10/JBGLaeDzfp9jcoq.png" alt="纯小数和纯整数">
+如果不是纯小数和纯整数，我们乘以比例因子转化为纯小数/纯整数</li>
+</ul>
+<h3 id="浮点数的表示方法">浮点数的表示方法</h3>
+<p>为什么已经有了定点数还需要浮点数？</p>
+<ul>
+<li>计算机处理的很大程度上不是纯小数或者纯整数</li>
+<li>数据范围很大，定点数很难以表达</li>
+</ul>
+<h4 id="浮点数的表示格式">浮点数的表示格式</h4>
+<ul>
+<li>尾数（必须使用纯小数,需要时8位）</li>
+<li>阶码</li>
+<li>基码
+<img src="https://i.loli.net/2021/08/10/i36BkmpGgx4h7aS.png" alt="表示方法"></li>
+</ul>
+<h4 id="浮点数的表示范围">浮点数的表示范围</h4>
+<p>假设阶码数值取m位，尾数数值取n位
+N = S * r<strong>j
+阶码表示的最大值 2 <strong>m -1
+[-(2</strong>m -1), 2</strong>m -1]
+尾数表示的最大值 1- 2**（-n）
+尾数表示的最小值 2**(-n)
+[2**(-n), 1- 2**(0n)]
+考虑正负
+负数的表示范围[-(1-2**(-n)), -(2**(-n))]
+正数的表示范围[2**(-n), 1- 2**(-n)]
+表示的最大范围 <img src="https://i.loli.net/2021/08/10/9X8wHCoIld6GSum.png" alt="最大范围">
+<strong>单精度浮点数：使用4字节、32位来表达浮点数（float）</strong>
+<strong>双精度浮点数：使用8字节 double</strong></p>
+<h4 id="浮点数的规格化">浮点数的规格化</h4>
+<h2 id="定点数的加减法">定点数的加减法</h2>
+<p>整数
+<img src="https://i.loli.net/2021/08/10/2dEYfAVgDOhnNTb.png" alt="运算规则">
+数值位和符号位一同运算，并将符号位产生的进位自然丢掉</p>
+<h3 id="浮点数的加减法">浮点数的加减法</h3>
+<p><img src="https://i.loli.net/2021/08/10/27b5Yg9yEQUnaGd.png" alt="运算规则">
+对阶</p>
+<h1 id="操作系统篇">操作系统篇</h1>
+<h2 id="操作系统的演变">操作系统的演变</h2>
+<h4 id="无操作系统">无操作系统</h4>
+<ul>
+<li>人工操作</li>
+<li>用户独占</li>
+<li>CPU等待人工操作</li>
+<li>资源利用率很低</li>
+</ul>
+<h4 id="批处理系统">批处理系统</h4>
+<ul>
+<li>无需等待人工操作</li>
+<li>批量输入任务</li>
+<li>资源利用率提升</li>
+<li><strong>多道程序设计</strong></li>
+</ul>
+<h4 id="分时系统">分时系统</h4>
+<ul>
+<li>人机交互</li>
+<li>多用户共享</li>
+<li>及时调试程序</li>
+<li>资源利用率提升</li>
+</ul>
+<h4 id="多道程序设计">多道程序设计</h4>
+<ul>
+<li>早期批处理系统只能一次处理一个任务</li>
+<li>多道程序设计使得批处理系统可以一次处理多个任务</li>
+</ul>
+<h5 id="什么是多道程序设计">什么是多道程序设计</h5>
+<ul>
+<li>多道程序设计是指在计算机内存中同时存放多个程序</li>
+<li>多道程序在计算机的管理程序之下相互穿插运行</li>
+</ul>
+<p><strong>对多道程序的管理是操作系统的重要功能</strong>
+共五大管理功能</p>
+<ol>
+<li>进程管理</li>
+<li>存储管理</li>
+<li>作业管理</li>
+<li>文件管理</li>
+<li>设备管理</li>
+</ol>
+<h2 id="操作系统概览">操作系统概览</h2>
+<h3 id="什么是操作系统">什么是操作系统</h3>
+<ul>
+<li>操作系统是管理计算机硬件和软件资源的计算机程序（它也是软件）</li>
+<li>管理配置内存、决定资源供需顺序、控制输入输出设备等</li>
+<li>操作系统提供让用户和系统交互的操作界面</li>
+</ul>
+<h3 id="为什么需要操作系统">为什么需要操作系统</h3>
+<ul>
+<li>我们不可能直接操作计算机硬件</li>
+<li>设备种类繁多复杂，需要统一界面</li>
+<li>操作系统的简易性是的更多人能够使用计算机</li>
+</ul>
+<h3 id="操作系统的基本功能">操作系统的基本功能</h3>
+<ul>
+<li>资源管理
+<ul>
+<li>处理器资源</li>
+<li>IO设备资源</li>
+<li>存储器资源</li>
+<li>文件资源 
+操作系统统一管理着资源</li>
+</ul>
+</li>
+<li>抽象
+<ul>
+<li>用户无需面向硬件接口编程</li>
+<li>IO设备管理软件，提供读写接口</li>
+<li>文件管理软件，提供文件接口
+操作系统实现了对计算机资源的抽象</li>
+</ul>
+</li>
+<li>用户和计算机之间的接口
+<ul>
+<li>图像窗口</li>
+<li>命令形式</li>
+<li>系统调用形式
+操作系统提供了用户与计算机之间的接口</li>
+</ul>
+</li>
+</ul>
+<h3 id="操作系统的相关概念">操作系统的相关概念</h3>
+<ul>
+<li>并发性
+与并行对比
+并行指的是 同一个时刻
+并发是指 在同一个时间间隔</li>
+<li>共享性
+<ul>
+<li>共享性表现为操作系统中的资源可供多个并发程序共同使用</li>
+<li>这种共同使用的形式称之为资源共享</li>
+<li>互斥共享和同时访问
+<img src="https://i.loli.net/2021/08/11/2FKd8Y6IOcsfUgA.png" alt="互斥共享和同时访问"></li>
+<li>什么是互斥共享
+<ul>
+<li>当资源被程序A占用时，其他想使用的话只能等待</li>
+<li>只有进程A使用完以后，其他进程才可以使用该资源</li>
+<li>例如 打印机</li>
+</ul>
+</li>
+<li>什么是同时访问
+<ul>
+<li>某种资源在一段时间内并发地被多个程序访问</li>
+<li>这种“同时”是宏观的，从宏观去看该资源是可以被同时访问的（例如访问硬盘，速度很快可以当做同时）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>虚拟性
+<ul>
+<li>虚拟性表现为把一个物理实体转变为若干个逻辑实体</li>
+<li>物理实体是真实存在的，逻辑实体是虚拟的。</li>
+<li>虚拟的技术主要有时分复用技术和空分复用技术</li>
+<li>什么是时分复用技术
+<ul>
+<li>资源在时间上进行复用，不同程序并发使用</li>
+<li>多道程序分时使用计算机的硬件资源</li>
+<li>提高资源的利用率</li>
+<li>虚拟处理器技术
+<ul>
+<li>借助多道程序设计技术</li>
+<li>为每个程序建立进程</li>
+<li>多个程序分时复用处理器</li>
+</ul>
+</li>
+<li>虚拟设备技术
+<ul>
+<li>物理设备虚拟为多个逻辑设备</li>
+<li>每个程序占用一个逻辑设备</li>
+<li>多个程序通过逻辑设备并发访问</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>什么是空分复用技术
+<ul>
+<li>用来实现虚拟磁盘、虚拟内存等</li>
+<li>提高资源的利用率、编程效率</li>
+<li>虚拟磁盘技术
+<ul>
+<li>物理磁盘虚拟为逻辑磁盘</li>
+<li>C、D、E等逻辑盘</li>
+<li>使用起来更加安全、方便</li>
+</ul>
+</li>
+<li>虚拟内存技术
+<ul>
+<li>在逻辑上扩大程序的存储容量</li>
+<li>使用比实际内存更大的容量</li>
+<li>大大提升编程效率</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>异步性
+<ul>
+<li>在多道程序环境下，允许多个进程并发执行</li>
+<li>进程在使用资源时可能需要等待或放弃</li>
+<li>进程的执行并不是一气呵成的，而是以走走停停的形式推进的
+<img src="https://i.loli.net/2021/08/11/AVJ6KT9Ov2YfgMa.png" alt="异步性">
+程序以不可预知的速度向前推进</li>
+</ul>
+</li>
+</ul>
+<h2 id="进程">进程</h2>
+<h3 id="进程管理之进程实体">进程管理之进程实体</h3>
+<h4 id="为什么需要进程">为什么需要进程</h4>
+<p>在没有配置os之前，资源属于当前的程序
+一个程序一个程序的运行，且资源只属于一个程序
+配置os之后，引入多道程序设计的概念
+合理的隔离资源、运行环境、提升资源利用率</p>
+<ol>
+<li>进程是系统资源分配和调度的基本单位</li>
+<li>进程作为程序独立运行的载体，保障程序正常执行。</li>
+<li>进程的存在使得操作系统资源的利用率大幅提升
+<strong>多道程序设计很重要</strong></li>
+</ol>
+<h4 id="进程实体">进程实体</h4>
+<h5 id="主存中的进程形态">主存中的进程形态</h5>
+<p>在主存中，进程也是一块连续的内存空间，这块空间就被称为进程控制块
+<strong>进程控制块</strong></p>
+<ul>
+<li>包含 标识符、状态、优先级、程序计数器、内存指针、上下文数据、IO状态信息、记账信息</li>
+<li>标识符：标识符唯一标记一个进程，用于区别其他进程</li>
+<li>状态：标记进程的状态，如：运行态</li>
+<li>程序计数器：进程即将被执行的下一条地址</li>
+<li>内存指针：程序代码、进程数据相关指针</li>
+<li><strong>上下文数据</strong>：进程执行时处理器存储的数据</li>
+<li>IO状态信息：被进程IO操作所占用的文件列表</li>
+<li>记账信息：使用处理器时间、时钟树总和。
+<img src="https://i.loli.net/2021/08/11/GzvtTeOB8Q9Cocr.png" alt="PCB结构">
+<strong>总结：</strong></li>
+</ul>
+<ol>
+<li>进程标识符</li>
+<li>处理机状态</li>
+<li>进程调度信息</li>
+<li>进程控制信息
+<strong>进程控制块（PCB）:</strong></li>
+</ol>
+<ul>
+<li>用于描述和控制进程运行的通用数据结构</li>
+<li>记录进程当前状态和控制进程运行的全部信息</li>
+<li>PCB使得进程是能够独立运行的基本单位</li>
+</ul>
+<h5 id="进程与线程">进程与线程</h5>
+<p>一个进程可以有一个/多个线程</p>
+<ul>
+<li>线程是操作系统进行运行调度的最小单位（进程是系统资源分配和调度的基本单位）</li>
+<li>包含在进程之中，是进程中实际运行工作的单位</li>
+<li>一个进程可以并发多个线程，每个线程执行不同的任务
+<strong>进程的线程共享进程资源</strong></li>
+</ul>
+<h3 id="进程管理之五状态模型">进程管理之五状态模型</h3>
+<ol>
+<li>就绪
+<ul>
+<li>当进程被分配到除CPU以外的所有必要的资源后</li>
+<li>只要再获得CPU的使用权，就可以立即运行</li>
+<li>其他资源都准备好、只差CPU资源的状态为就绪状态</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>在一个系统中多个处于就绪状态的进程通常排成一个队列&ndash; 就绪队列</li>
+</ul>
+<ol start="2">
+<li>执行</li>
+</ol>
+<ul>
+<li>进程获得CPU，其程序正在执行成为执行装填</li>
+<li>单处理机，任意时刻只能有一个进程处于执行状态</li>
+</ul>
+<ol start="3">
+<li>阻塞</li>
+</ol>
+<ul>
+<li>进程因某种原因：其他设备未就绪而无法继续执行</li>
+<li>从而放弃CPU的状态成为阻塞状态</li>
+<li>操作系统也会将处于阻塞状态的进程排成一个队列&ndash;阻塞队列</li>
+</ul>
+<p><img src="https://i.loli.net/2021/08/11/9EcL38N6pteKZkP.png" alt="三状态转换"></p>
+<ol start="4">
+<li>创建</li>
+</ol>
+<ul>
+<li>分配PCB -&gt; 插入就绪队列</li>
+<li>创建进程时拥有PCB但<strong>其他资源尚未就绪</strong>的状态称为创建状态</li>
+<li>操作系统提供fork函数接口创建进程</li>
+</ul>
+<ol start="5">
+<li>终止</li>
+</ol>
+<ul>
+<li>系统清理 -&gt; PCB归还</li>
+<li>进程结束由系统清理或者归还PCB的状态称为终止状态</li>
+</ul>
+<p><img src="https://i.loli.net/2021/08/11/BaTPNRQFIrEYepM.png" alt="五状态转换"></p>
+<h3 id="进程管理之进程同步">进程管理之进程同步</h3>
+<h4 id="为什么需要进程间同步">为什么需要进程间同步</h4>
+<p><strong>生产者消费者问题</strong>
+<img src="https://i.loli.net/2021/08/11/dW1FjxINrZiwmYL.png" alt="生产者消费者模型"></p>
+<ul>
+<li>生产者生产一个产品 就往缓冲区 +1</li>
+<li>消费者拿走一个产品 就往缓冲区 -1
+这些操作在现实生活中没有问题。
+但是在计算机的角度就有问题了。</li>
+<li>缓冲是在Cache上的</li>
+<li>操作缓冲需要三个步骤
+<ol>
+<li>register(生产者/消费者的寄存器) =count</li>
+<li>register = register + 1</li>
+<li>count = register</li>
+</ol>
+</li>
+<li>单从生产者程序或消费者程序去看没有问题</li>
+<li>但是两者并发执行时就可能出差错
+<img src="https://i.loli.net/2021/08/11/maIJc7QZqVvBo28.png" alt="出错">
+这里count 就是临界资源
+<strong>哲学家进餐问题</strong>
+<img src="https://i.loli.net/2021/08/11/12RQqH6CUyGuxcT.png" alt="问题描述">
+<img src="https://i.loli.net/2021/08/11/DmvfsB37GRnMzd1.png" alt="发生问题">
+在这个例子里，筷子是临界资源，哲学家是进程
+<strong>根源问题：</strong></li>
+<li>彼此之间没有通信</li>
+<li>如果生产者通知消费者我已经完成一件生产</li>
+<li>哲学家向旁边哲学家说我要进餐了
+所以需要进程间的同步
+进程间的同步解决<strong>对竞争资源在多进程间进行使用次序的协调</strong>
+<strong>临界资源：</strong></li>
+<li>临界资源指的是一些虽作为共享资源却又无法同时被多个线程共同访问的共享资源。当有进程在使用临界资源时，其他进程必须依据操作系统的同步机制等待占用进程释放该共享资源才可重新竞争使用共享资源。</li>
+</ul>
+<h4 id="进程间同步的原则">进程间同步的原则</h4>
+<ul>
+<li>空闲让进：资源无占用，允许使用</li>
+<li>忙则等待：资源由占用，请求进程等待</li>
+<li>有限等待：保证有限等待时间能够使用资源</li>
+<li>让权等待：等待时，进程需要让出CPU(保证CPU的高效率运行)</li>
+</ul>
+<h4 id="进程同步的方法">进程同步的方法</h4>
+<ul>
+<li>消息队列</li>
+<li>共享存储</li>
+<li>信号量</li>
+</ul>
+<h4 id="线程同步">线程同步</h4>
+<p><img src="https://i.loli.net/2021/08/11/e6ZEnFCrsYfiAL9.png" alt="线程为什么也需要同步">
+线程也可能会抢占 进程的共享资源</p>
+<p>线程同步的方法：</p>
+<ul>
+<li>互斥量</li>
+<li>读写锁</li>
+<li>自旋锁</li>
+<li>条件变量</li>
+</ul>
+<h3 id="linux-进程管理">Linux 进程管理</h3>
+<h4 id="linux-进程的相关概念">Linux 进程的相关概念</h4>
+<h5 id="linux-进程类型">linux 进程类型</h5>
+<ol>
+<li>前台进程</li>
+</ol>
+<ul>
+<li>前台进程就是具有终端，可以和用户交互的进程</li>
+</ul>
+<ol start="2">
+<li>后台进程</li>
+</ol>
+<ul>
+<li>没有占用终端的就是后台进程</li>
+<li>后台程序基本不和用户交互，优先级比前台进程低</li>
+<li>将需要执行的命令以‘&amp;’符号结束</li>
+</ul>
+<ol start="3">
+<li>守护进程</li>
+</ol>
+<ul>
+<li>守护进程（daemon）是特殊的后台进程</li>
+<li>很多守护进程在系统引导的时候启动，一直运行到系统关闭（就是windows的服务）
+例如 crond（定时任务）, httpd, sshd，mysqld
+一般以&rsquo;d&rsquo;结尾的进程都是守护进程</li>
+</ul>
+<h5 id="进程的标记">进程的标记</h5>
+<ol>
+<li>进程ID
+<ul>
+<li>进程ID是进程唯一标记，每个进程拥有不同的ID</li>
+<li>进程ID表现为一个非负整数，最大值由操作系统限定</li>
+<li>在linux中 父子进程的关系可以通过 pstree 命令查看</li>
+<li>ID为0的进程为idle进程，是系统创建的第一个进程</li>
+<li>ID为1的进程是init进程，是0号进程的子进程，完成系统初始化</li>
+</ul>
+</li>
+<li>状态符号
+<ul>
+<li>R: <strong>(TASK_RUNNING),进程正处于运行状态</strong></li>
+<li>S: <strong>(TASK_INTERRUPTIBLE),进程正处于睡眠状态</strong></li>
+<li>D: (TASK_UNINTERRUPTIBLE),进程正在处于IO等待的睡眠状态</li>
+<li>T: (TASK_STOPPED),进程正处于暂停状态</li>
+<li>Z: (TASK_DEAD OR EXIT_ZOMBIE),进程正处于退出状态，或僵尸进程</li>
+</ul>
+</li>
+</ol>
+<h4 id="操作linux进程的相关命令">操作Linux进程的相关命令</h4>
+<ul>
+<li>
+<p>ps</p>
+<ul>
+<li>ps -aux 打印进程详细信息</li>
+<li>ps -u root 查看用户root的进程</li>
+<li>ps -ef &ndash;forest 查看进程树</li>
+<li>ps -aux &ndash;sort=-pcpu 按照cpu使用情况排序查看进程</li>
+<li>ps -aux &ndash;sort=-pmem 按照内存使用情况排序查看进程</li>
+</ul>
+</li>
+<li>
+<p>top</p>
+<ul>
+<li>查看进程的所有状态 有pr 优先级 virt 进程的虚拟内存等这些字段</li>
+</ul>
+</li>
+<li>
+<p>kill</p>
+<ul>
+<li>给进程发送信号</li>
+<li>kill -9 51015 给51015进程发送9信号，9 信号代表无条件停止下来（除了9信号，其他信号进程有权忽略）</li>
+<li>kill -l 查看操作系统支持的信号</li>
+</ul>
+</li>
+</ul>
+<h3 id="作业管理之进程调度">作业管理之进程调度</h3>
+<h4 id="什么是进程的调度">什么是进程的调度</h4>
+<p><strong>进程调度是指计算机通过决策决定哪个就绪进程可以获得CPU使用权</strong>（前提也是多道程序设计）</p>
+<ul>
+<li>保留旧进程的运行信息，请出旧进程（收拾包袱）</li>
+<li>选择新进程，准备运行环境并分配CPU（新进驻）
+为了理解进程的调度，还需要了解三种机制</li>
+</ul>
+<ol>
+<li>就绪队列的排队机制</li>
+</ol>
+<ul>
+<li>将就绪进程按照一定的方式排成队列，一边调度程序可以最快找到就绪进程</li>
+</ul>
+<ol start="2">
+<li>选择运行进程的委派机制</li>
+</ol>
+<ul>
+<li>调度程序以一定的策略选择就绪进程，将CPU资源分配给它</li>
+</ul>
+<ol start="3">
+<li>新老进程的上下文切换机制</li>
+</ol>
+<ul>
+<li>保存当前进程的上下文信息，装入被委派执行进程的运行上下文（首先将老进程的上下文从高速缓存移动到主存，然后装入新进程的上下文）
+<ul>
+<li>如果调度的时候老进程没有执行完该怎么办？</li>
+<li>按照老进程是否执行完可以分为两类</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>非抢占式的调度
+<ul>
+<li>处理器一旦分配给某个进程，就让该进程一直使用下去</li>
+<li>调度程序不以任何原因抢占正在被使用的处理器</li>
+<li>直到进程完成工作或因为IO阻塞才会让出处理器</li>
+</ul>
+</li>
+<li>抢占式调度
+<ul>
+<li>允许调度程序以一定的策略暂停当前运行的进程</li>
+<li>保存好旧进程的上下文信息，分配处理器给新进程
+<img src="https://i.loli.net/2021/08/11/HzaLZMQg5c4uFD1.png" alt="两种调度方式的策略"></li>
+</ul>
+</li>
+</ol>
+<h4 id="进程调度算法">进程调度算法</h4>
+<ul>
+<li>先来先服务调度算法
+在就绪队列里面，按照先来先执行的顺序</li>
+<li>短进程优先调度算法
+<ul>
+<li>调度程序优先选择就绪队列中估计运行时间最短的进程</li>
+<li>不利于厂作业进程的执行</li>
+</ul>
+</li>
+<li>高优先权优先调度算法
+<ul>
+<li>进程附带优先权，调度程序优先选择权重的进程</li>
+<li>高优先权优先调度算法使得紧迫的任务可以优先处理</li>
+</ul>
+</li>
+<li>时间片轮转调度算法
+<ul>
+<li>按照先来先服务的原则排列就绪队列</li>
+<li>每次从队列头部取出待执行进程，分配一个时间片执行</li>
+<li>公平，但是不能保证及时响应用户</li>
+</ul>
+</li>
+</ul>
+<h2 id="作业管理">作业管理</h2>
+<h3 id="作业管理之死锁">作业管理之死锁</h3>
+<h4 id="死锁的产生原因">死锁的产生原因</h4>
+<ul>
+<li>
+<p>竞争资源</p>
+<ul>
+<li>共享资源数量不满足各个进程需求</li>
+<li>进程调度顺序不当</li>
+</ul>
+</li>
+<li>
+<p>死锁的四个必要条件</p>
+<ul>
+<li>互斥条件：
+<ul>
+<li>进程对资源的使用是排他性的使用</li>
+<li>某资源只能由一个进程使用，其他进程需要使用只能等待</li>
+</ul>
+</li>
+<li>请求保持条件
+<ul>
+<li>进程至少保持一个资源，又提出新的资源请求</li>
+<li>新资源被占用，请求被阻塞</li>
+<li>被阻塞的进程不释放自己保持的资源</li>
+</ul>
+</li>
+<li>不可剥夺条件
+<ul>
+<li>进程获得资源在未完成使用前不能剥夺</li>
+<li>资源只能由进程本身释放</li>
+</ul>
+</li>
+<li>环路等待条件
+<ul>
+<li>发生死锁时，必然存在进程-资源环形链</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="预防死锁的方法">预防死锁的方法</h4>
+<ul>
+<li>破坏请求保持条件
+<ul>
+<li>系统规定进程运行之前，一次性申请所有需要的资源</li>
+</ul>
+</li>
+<li>破坏不可剥夺条件
+<ul>
+<li>当一个进程请求新的资源得不到满足时，必须释放占有的资源</li>
+<li>进程运行时占有的资源可以被释放，意味着可以被剥夺</li>
+</ul>
+</li>
+<li>破坏环路等待条件
+<ul>
+<li>可用资源线性排序，申请必须按照需要递增申请</li>
+<li>线性申请不再形成环路，从而破坏了环路等待条件</li>
+</ul>
+</li>
+</ul>
+<h4 id="银行家算法">银行家算法</h4>
+<ol>
+<li>客户申请的贷款是有限的，每次申请需声明最大资金量</li>
+<li>银行家在能够满足贷款时，都应该给用户贷款</li>
+<li>客户在使用贷款后，能够及时归还贷款</li>
+</ol>
+<p><img src="https://i.loli.net/2021/08/12/mIXqFeKra9dojC3.png" alt="资源表 "></p>
+<h2 id="存储管理">存储管理</h2>
+<h3 id="存储管理之内存分配与回收-物理内存角度">存储管理之内存分配与回收 （物理内存角度）</h3>
+<p><strong>早期计算机编程并不需要过多的存储管理</strong>
+<strong>随着计算机和程序越来越复杂，存储管理成为必要</strong></p>
+<ul>
+<li>确保计算机有足够的内存处理数据</li>
+<li>确保程序可以从可用内存中获取一部分内存使用</li>
+</ul>
+<h4 id="内存分配的过程">内存分配的过程</h4>
+<h5 id="单一连续分配">单一连续分配</h5>
+<ul>
+<li>单一连续分配是最简单的内存分配方式</li>
+<li>只能在单用户、单进程的操作系统中使用</li>
+</ul>
+<h5 id="固定分区分配">固定分区分配</h5>
+<ul>
+<li>固定分区分配是支持多道程序的最简单存储分配方式</li>
+<li>内存空间被划分为若干固定大小的区域</li>
+<li>每个分区只提供一个程序使用，互不干扰</li>
+</ul>
+<h5 id="动态分配分配">动态分配分配</h5>
+<ul>
+<li>根据进程实际需要，动态分配内存空间</li>
+<li>相关数据结构、分配算法
+<strong>动态分区空闲表数据结构</strong>
+<img src="https://i.loli.net/2021/08/12/nkfgKbdZ5mDqhFl.png" alt="动态分区空闲表结构"></li>
+</ul>
+<p><strong>动态分区空闲链数据结构</strong>
+使用双链表把空闲节点连接起来，连续的空闲节点可以直接合并起来
+<img src="https://i.loli.net/2021/08/12/DrWe7NoLvFbZ3It.png" alt="空闲链数据结构"></p>
+<h4 id="动态分区分配算法">动态分区分配算法</h4>
+<h5 id="首次适应算法ff">首次适应算法（FF）</h5>
+<ul>
+<li>分配内存时从开始顺序查找合适内存区</li>
+<li>若没有合适的空闲区，则分配失败</li>
+<li>每次都从头部开始，使得头部地址空间不断划分（只要前面找到了，就不会去后面。大概率都是在前面的地址空间内划分，到最后很多碎片，每次都要遍历到最后）</li>
+<li>改进方向，从上次检索位置开始查找适合内存区（循环适应算法）</li>
+</ul>
+<h5 id="最佳适应算法bf">最佳适应算法(BF)</h5>
+<ul>
+<li>最佳适应算法要求空闲区链表按照容量大小排序</li>
+<li>遍历空闲区链表找到最佳合适空闲区（&gt;= 容量i）</li>
+</ul>
+<h5 id="快速适应算法qf">快速适应算法（QF）</h5>
+<ul>
+<li>快速适应算法要求有多个空闲区链表</li>
+<li>每个空闲区链表存储一种容量的空闲区
+感觉很像桶排序的思想啊。</li>
+</ul>
+<h4 id="内存回收的过程">内存回收的过程</h4>
+<p>2种情况（细分4种）</p>
+<ol>
+<li>需要回收的区域和空闲区连在一起的
+<ol>
+<li>回收区在空闲区后面
+<ul>
+<li>不需要新建空闲链表节点</li>
+<li>只需要把空闲区1的容量增大为包括回收区的空闲区容量即可</li>
+</ul>
+</li>
+<li>回收区在空闲区前面
+<ul>
+<li>将回收区和空闲区合并</li>
+<li>新的空闲区使用回收区的地址</li>
+</ul>
+</li>
+<li>回收区在两块空闲区中间
+<ul>
+<li>将空闲区1、空闲区2和回收区合并</li>
+<li>新的空闲区使用空闲区1的地址</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>需要回收的区域和空闲区无连接
+<ol>
+<li>回收区单一，没有连接任何空闲区
+<ul>
+<li>为回收区创建新的空闲节点</li>
+<li>插入到相应的空闲区链表中去</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="存储管理之段页式存储管理操作系统角度进程角度">存储管理之段页式存储管理（操作系统角度，进程角度）</h3>
+<h4 id="操作系统是如何管理进程的空间的">操作系统是如何管理进程的空间的</h4>
+<p><img src="https://i.loli.net/2021/08/12/FUhgrkjdGXfOl6Q.png" alt="物理地址空间和逻辑地址空间"></p>
+<h4 id="页式存储管理">页式存储管理</h4>
+<ul>
+<li>将进程逻辑空间等分成若干大小的页面</li>
+<li>相应的把物理内存空间分成与页面大小的一样的物理块</li>
+<li>以页面为单位把进程空间装进物理内存中分散的物理块
+<ul>
+<li>页面大小应该适中，过大难以分配，过小都是碎片</li>
+<li>页面大小通常是512B- 8K 
+<img src="https://i.loli.net/2021/08/12/Xge1SQjTD6oyBHN.png" alt="页式存储管理"></li>
+</ul>
+</li>
+</ul>
+<h4 id="页表">页表</h4>
+<p>页表负责记录进程逻辑空间和物理空间的映射（要不然找不到啊）
+<img src="https://i.bmp.ovh/imgs/2021/08/1cd92edce5de21df.png" alt="段页式存储">
+<img src="https://i.loli.net/2021/08/12/ngjTlWL1YzIXdvJ.png" alt="缺点">
+<strong>多级页表可以解决这个问题</strong>
+<img src="https://i.loli.net/2021/08/12/fYtEJ1DbroI2cTF.png" alt="多级页表">
+<strong>页式存储的缺点</strong>
+有一段连续的逻辑分布在多个页面中，将大大降低执行效率</p>
+<h5 id="什么是内存碎片呢">什么是内存碎片呢？</h5>
+<h4 id="段式存储管理">段式存储管理</h4>
+<ul>
+<li>将进程逻辑空间划分成若干段</li>
+<li>段的长度由连续逻辑的长度决定</li>
+<li>主函数MAIN、子程序段X、子函数Y等</li>
+</ul>
+<h4 id="共同点和区别">共同点和区别</h4>
+<p><strong>段式存储和页式存储都离散地管理了进程的逻辑空间</strong></p>
+<ul>
+<li>页是物理单位，段式逻辑单位</li>
+<li>分页是为了合理利用空间，分段是满足用户要求</li>
+<li>页大小由硬件固定，段长度可动态变化</li>
+<li>页表信息是一维的，段表信息是二维的</li>
+</ul>
+<h4 id="段页式存储管理">段页式存储管理</h4>
+<h5 id="首先来看看分页和分段的好处">首先来看看分页和分段的好处</h5>
+<ul>
+<li>分页可以有效提高内存利用率（虽然存在页内碎片）</li>
+<li>分段可以更好的满足用户需求</li>
+<li>两者结合，形成段页式存储管理
+<strong>段页式存储管理的方法</strong></li>
+</ul>
+<ol>
+<li>现将逻辑空间按段式管理分成若干段</li>
+<li>再把段内空间按页式管理等分成若干页
+<img src="https://i.loli.net/2021/08/12/R2SnDjqLVbY9IUx.png" alt="段页式存储管理">
+<img src="https://i.loli.net/2021/08/12/LucDnXx13omiWkK.png" alt="三种存储管理图"></li>
+</ol>
+<h3 id="存储管理之虚拟内存">存储管理之虚拟内存</h3>
+<ul>
+<li>有些进程实际需要的内存很大，超过物理内存的容量</li>
+<li>多道程序设计，使得每个进程可用物理内存更加稀缺</li>
+</ul>
+<h4 id="虚拟内存概述">虚拟内存概述</h4>
+<ul>
+<li>虚拟内存时操作系统内存管理的关键技术</li>
+<li>使得多道程序运行和大程序运行成为现实</li>
+<li>把程序使用内存划分，将部分暂时不适用的内存放置在辅存</li>
+</ul>
+<h5 id="程序的局部性原理">程序的局部性原理</h5>
+<p>局部性原理是指CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</p>
+<ul>
+<li>根据这个原理，不需将所有数据都装入内存，装入部分即可，其余的可以放在辅存</li>
+<li>如果访问页不在内存，则发出缺页中断，发起页面置换（页面置换速度慢）</li>
+<li>从用户层面看，程序拥有很大的空间，即是虚拟内存</li>
+</ul>
+<h5 id="虚拟内存的置换算法其实就是缓存淘汰的算法和它的原因相同总把热数据置换到主存里面">虚拟内存的置换算法（其实就是缓存淘汰的算法，和它的原因相同，总把热数据置换到主存里面。）</h5>
+<ul>
+<li>先进先出算法（FIFO）</li>
+<li>最不经常使用算法（LFU）</li>
+<li>最近最少使用算法（LRU）
+<img src="https://i.loli.net/2021/08/12/f6zh59dyYse2oj8.png" alt=""></li>
+<li>替换策略发生在Cache-主存层次、主存-辅存层次</li>
+<li>Cache-主存层次的替换策略主要是为了解决<strong>速度问题</strong></li>
+<li>主存-辅存层次主要是为了解决<strong>容量问题</strong></li>
+</ul>
+<h3 id="linux的存储管理">Linux的存储管理</h3>
+<h4 id="buddy内存管理算法">Buddy内存管理算法</h4>
+<ul>
+<li>Buddy算法是经典的内存管理算法</li>
+<li>算法基于计算机处理二进制的优劣具有极高的效率</li>
+<li>算法主要是为了解决<strong>内存外碎片</strong>的问题
+<ul>
+<li>
+<p>什么是页内碎片
+内部碎片是已经被分配出去（能明确指出属于哪个进程)的内存空间大于请求所需的内存空间，不能被利用的内存空间就是内部碎片。</p>
+</li>
+<li>
+<p>什么是页外碎片
+外部碎片是指还没有分配出去(不属于任何进程)，但是由于大小而无法分配给申请内存空间的新进程的内存空闲块。
+<img src="https://i.loli.net/2021/08/12/nB1sr3KWJYSDw9i.png" alt="页内碎片和页外碎片"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="buddy内存管理算法方法">Buddy内存管理算法方法</h5>
+<ol>
+<li>向上取整为2的幂大小(如果进程申请78k，将分配128k)</li>
+<li>伙伴系统
+<ul>
+<li>伙伴是指内存的伙伴</li>
+<li>一片连续内存的伙伴时相邻的另一片大小一样的连续内存
+<img src="https://i.loli.net/2021/08/12/79wU3gn8ymIXQrR.png" alt="也是段页式存储">
+也是段页式存储结构</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>先分配，后回收
+<strong>分配</strong>
+<img src="https://i.loli.net/2021/08/12/Yu54aShimWwBvMb.png" alt="分配1">
+<img src="https://i.loli.net/2021/08/12/OimBdUWFePAIvz2.png" alt="分配2">
+<strong>回收</strong>
+<img src="https://i.loli.net/2021/08/12/VGlWuQrgtDznd6O.png" alt="回收"></li>
+<li>算法基于计算机处理二进制的优势（就像二分查找）具有极高的效率</li>
+<li>算法主要是为了解决内存外碎片的问题
+实质上 内存外碎片 -&gt; 内存内碎片问题（例如上面的进程需要78kb 分配了 128kb 变成了片内碎片）</li>
+</ul>
+<h4 id="linux交换空间swap">Linux交换空间（swap）</h4>
+<ul>
+<li>冷启动内存管理（不怎么使用的空间放在swap里）</li>
+<li>系统睡眠依赖</li>
+<li>大进程空间依赖</li>
+</ul>
+<h5 id="交换空间和虚拟内存的关系">交换空间和虚拟内存的关系</h5>
+<p><strong>Swap空间</strong></p>
+<ul>
+<li>Swap 空间存在于磁盘</li>
+<li>Swap空间与主存发生置换</li>
+<li>Swap空间<strong>是操作系统概念</strong></li>
+<li>Swap空间<strong>解决系统物理内存不足问题</strong>
+<strong>虚拟内存</strong></li>
+<li>虚拟内存存在于磁盘</li>
+<li>虚拟内存与主存发生置换</li>
+<li>虚拟内存是<strong>进程的概念</strong></li>
+<li>虚拟内存<strong>解决进程物理内存不足问题</strong></li>
+</ul>
+<h2 id="文件管理">文件管理</h2>
+<h3 id="操作系统的文件文理">操作系统的文件文理</h3>
+<h4 id="文件的逻辑结构">文件的逻辑结构</h4>
+<h5 id="逻辑结构的文件类型">逻辑结构的文件类型</h5>
+<ul>
+<li>有结构文件
+<ul>
+<li>文本文件、文档、媒体文件</li>
+<li>文件内容由定长记录和可变长记录组成</li>
+<li>定长记录存储文件格式、文件描述等结构化数据项</li>
+<li>可变长记录存储文件具体内容
+<img src="https://i.loli.net/2021/08/12/QUkSBHvMAT6Er2e.png" alt="PNG样例"></li>
+</ul>
+</li>
+<li>无结构文件
+<ul>
+<li>二进制文件、链接库</li>
+<li>也称为流式文件</li>
+<li>文件内容长度以字节为单位</li>
+<li>例如exe dll so</li>
+</ul>
+</li>
+</ul>
+<h5 id="顺序文件">顺序文件</h5>
+<ul>
+<li>按照顺序存放在存储介质中的文件</li>
+<li>磁带的存储特性使得磁带文件只能存储顺序文件</li>
+<li>顺序文件是所有逻辑文件当中存储效率最高的</li>
+<li>增删查改慢（就像顺序读写结构和随机）</li>
+</ul>
+<h5 id="索引文件">索引文件</h5>
+<p>就是为了解决顺序文件的增删改慢</p>
+<ul>
+<li>可变长文件不适合使用顺序文件格式存储</li>
+<li>索引文件是为了解决可变长文件存储发明的一种文件格式</li>
+<li>索引文件需要配合索引表完成存储结构</li>
+</ul>
+<h3 id="辅存的存储空间分配">辅存的存储空间分配</h3>
+<h4 id="辅存的分配方式">辅存的分配方式</h4>
+<h5 id="连续分配">连续分配</h5>
+<ul>
+<li>顺序读取文件内容非常容易，速度快</li>
+<li>对存储要求高，要求满足容量的连续空间</li>
+</ul>
+<h5 id="链接分配">链接分配</h5>
+<ul>
+<li>链接分配可以将文件存储在离散的盘块中</li>
+<li>又可分为显式链接和隐式链接
+<ul>
+<li>显式链接</li>
+<li>隐式链接
+<ul>
+<li>隐式分配的下一个链接指向存储在当前盘块</li>
+<li>顺序访问块，随机访问慢（其实就是顺序存储和非顺序存储的区别）</li>
+<li>FAT表（FAT文件系统，File Allocation Table）</li>
+<li>不支持高效的直接存储</li>
+<li>检索时FAT表占用较大的存储空间（需要将整个FAT表加载到内存）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="索引分配">索引分配</h5>
+<ul>
+<li>把文件的所有盘块集中存储（索引）</li>
+<li>读取某个文件时，将文件索引读取仅内存即可</li>
+<li>每个文件拥有一个索引快，记录所有盘块信息</li>
+<li>索引分配方式支持直接访问盘块</li>
+<li>文件较大时，索引分配方式具有明显优势</li>
+</ul>
+<h3 id="辅存的存储空间分配-1">辅存的存储空间分配</h3>
+<h4 id="空闲表">空闲表</h4>
+<p><img src="https://i.loli.net/2021/08/12/NrWtXwTL1kq2HP5.png" alt="空闲表"></p>
+<h4 id="空闲链表">空闲链表</h4>
+<h4 id="位示图新的和主存不一样的地方了">位示图（新的和主存不一样的地方了）</h4>
+<p><img src="https://i.loli.net/2021/08/12/n7XfIUxbDWTy5es.png" alt="位示图"></p>
+<ul>
+<li>维护成本低</li>
+<li>容易找到空闲盘块</li>
+<li>使用0/1比特，占用空间小</li>
+</ul>
+<h3 id="目录管理">目录管理</h3>
+<h4 id="目录树">目录树</h4>
+<h3 id="linux文件基本操作">Linux文件基本操作</h3>
+<h4 id="linux文件类型">Linux文件类型</h4>
+<ul>
+<li>套接字（s）、普通文件（-）、目录文件（d）、符号链接（l表示）、设备文件（c表示字符设备文件，b表示块设备文件）、FIFO（p）</li>
+</ul>
+<h3 id="linux文件系统">Linux文件系统</h3>
+<ul>
+<li>FAT
+<img src="https://i.loli.net/2021/08/12/il1Gv5gFbnVRhp2.png" alt="FAT"></li>
+<li>NTFS
+<img src="https://i.loli.net/2021/08/12/ud4z3ah91xt5ESo.png" alt="NTFS"></li>
+<li>EXT2/3/4
+<img src="https://i.loli.net/2021/08/12/x4bgpNVf6mPwrAG.png" alt="EXT文件系统"></li>
+</ul>
+<h4 id="ext文件系统索引分配">EXT文件系统（索引分配）</h4>
+<ul>
+<li>Boot Sector：启动山区，安装开机管理程序</li>
+<li>Block Group：块组，存储数据的实际位置
+<img src="https://i.loli.net/2021/08/12/4YSkFPeVqfNmsXa.png" alt="">
+<img src="https://i.loli.net/2021/08/12/71iQnZgfYqVIk2p.png" alt=""></li>
+</ul>
+<h5 id="inode-table">Inode Table</h5>
+<ul>
+<li>存放文件Inode 的地方</li>
+<li>每一个文件（目录）都有一个Inode</li>
+<li>每一个文件（目录）的索引节点（所以是索引分配的方式）
+<strong>Inode</strong></li>
+<li>保存了文件类型、文件权限、文件的物理地址、文件长度、文件连接计数、文件存取时间、文件状态、访问计数、链接指针&hellip;</li>
+<li>文件名不是存放在Inode节点上的，而是存放在目录的Inode节点</li>
+<li>列出目录文件的时候无需加载文件的Inode（为了方便）</li>
+</ul>
+<h5 id="inode-bitmap">Inode bitmap</h5>
+<ul>
+<li>Inode的位示图</li>
+<li>记录已分配的Inode和未分配的Inode
+<img src="https://i.loli.net/2021/08/12/wuAmKfhN2kzUTd6.png" alt="Inode位示图"></li>
+</ul>
+<h5 id="data-block">Data block</h5>
+<ul>
+<li>Data block 是存放文件内容的地方</li>
+<li>每个block 都有唯一的编号</li>
+<li>文件的blcok记录在文件的Inode上</li>
+</ul>
+<h5 id="block-bitmap">Block bitmap</h5>
+<ul>
+<li>记录data block的使用猖狂</li>
+</ul>
+<h5 id="superblcok">Superblcok</h5>
+<ul>
+<li>记录整个文件系统相关信息的地方</li>
+<li>Block和Inode的使用情况</li>
+<li>时间信息、控制信息等</li>
+</ul>
+<p>df -T 查看磁盘挂载信息
+dump2fs /dev/sda2 输出磁盘信息</p>
+<h2 id="设备管理">设备管理</h2>
+<h3 id="操作系统的设备管理">操作系统的设备管理</h3>
+<h4 id="什么是广义的io设备">什么是广义的IO设备</h4>
+<p><strong>对CPU而言，凡是对CPU进行数据输入的都是输入设备</strong>
+<strong>对CPU而言，凡是CPU进行数据输出的都是输出设备</strong></p>
+<ul>
+<li>按特性分类
+<img src="https://i.loli.net/2021/08/12/xQfIhp5WlE1z9Kt.png" alt=""></li>
+<li>按信息交换的单位分类
+<img src="https://i.loli.net/2021/08/12/pk4yg8TlmvrihcJ.png" alt=""></li>
+<li>按设备的共享属性分类</li>
+<li>按传输的速率分类</li>
+</ul>
+<h4 id="io设备的缓冲区">IO设备的缓冲区</h4>
+<p>上面因为CPU和IO设备的速率不匹配，所以我们采用了层次结构
+同样IO设备的缓冲区也是为了解决这个问题</p>
+<ul>
+<li>减少CPU处理IO请求的频率</li>
+<li>提高CPU和IO设备的之间的<strong>并行性</strong>
+<img src="https://i.loli.net/2021/08/12/B2vSaR5u7WGeNLK.png" alt=""></li>
+<li>专用缓冲区只适用于特定的IO进程</li>
+<li>当这样的IO进程比较多时，对内存的消耗也很大</li>
+<li>操作系统划出可供多个进程使用的公共缓冲区，称之为缓冲池
+<img src="https://i.loli.net/2021/08/12/BtE52mcxK1Idgju.png" alt=""></li>
+</ul>
+<h4 id="spooling技术重点-虚拟设备技术">SPOOLing技术（重点， 虚拟设备技术）</h4>
+<ul>
+<li>关于慢速字符设备何如和计算机主机交换信息的一种技术</li>
+<li>利用高速共享设备将低速的独享设备模拟为高速的共享设备（虚拟设备技术）</li>
+<li>逻辑上，系统为每一个用户都分配了一台独立的高速独享设备</li>
+</ul>
+<p><img src="https://i.loli.net/2021/08/12/MShUB1saYRzcu4G.png" alt="">
+把同步调度变成了异步调度</p>
+<ul>
+<li>在输入、输出之间增加了排队转储环节(输入井、输出井)</li>
+<li>SPOOLing负责输入(出)井与低速设备之间的调度</li>
+<li>逻辑上，进程直接与高速设备交互，减少
+了进程的等待时间</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bing</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-10-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">知识点总结</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/python%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6%E5%9C%A8orm%E7%9A%84%E5%BA%94%E7%94%A8/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python属性描述符在ORM的应用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/redis%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
+            <span class="next-text nav-default">Redis简单介绍与使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://acm-py.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2018-2022 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>bing</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
