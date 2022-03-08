@@ -6,7 +6,52 @@
     <description>Recent content on 阿炳-一个热衷于折腾和技术的Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 08 Mar 2020 15:36:11 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Mar 2022 17:29:10 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python元类的使用</title>
+      <link>https://acm-py.github.io/post/python%E5%85%83%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 02 Mar 2022 17:29:10 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/python%E5%85%83%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>如果需要你将类中所有属性强制转为大写该怎么办 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 # 这个时候就需要使用Python的元类功能了 # metaclass will automatically get</description>
+    </item>
+    
+    <item>
+      <title>详解装饰器</title>
+      <link>https://acm-py.github.io/post/%E8%AF%A6%E8%A7%A3%E8%A3%85%E9%A5%B0%E5%99%A8/</link>
+      <pubDate>Sun, 04 Jul 2021 19:21:50 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/%E8%AF%A6%E8%A7%A3%E8%A3%85%E9%A5%B0%E5%99%A8/</guid>
+      <description>装饰器 1. 为什么要使用装饰器 开放封闭原则：软件一旦上线后，就应该遵循开放封闭原则，即对修改源代码是封闭的，对功能的扩展是开放的。 也就是说我们必</description>
+    </item>
+    
+    <item>
+      <title>Python属性描述符在ORM的应用</title>
+      <link>https://acm-py.github.io/post/python%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6%E5%9C%A8orm%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Wed, 17 Feb 2021 13:41:14 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/python%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6%E5%9C%A8orm%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>Django ORM原理 为什么创建的Model会自动拥有名称为id的主键 查询管理器是什么？ 它又是怎么添加到Model中的？ QuerySet是什么样的结构</description>
+    </item>
+    
+    <item>
+      <title>OS知识点总结</title>
+      <link>https://acm-py.github.io/post/os%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Fri, 02 Oct 2020 17:29:10 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/os%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</guid>
+      <description>cpu -&amp;gt; 抽象成进程 磁盘 -&amp;gt; 文件 内存 -&amp;gt; 地址空间 面向外面的 -&amp;gt; shell 面向内面的 -&amp;gt; kernel kernel 组成部分: cpu 调度器 物理内存管理 虚拟内存管理 文件系统管理 中断处理与设备驱动</description>
+    </item>
+    
+    <item>
+      <title>Redis简单介绍与使用</title>
+      <link>https://acm-py.github.io/post/redis%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 12 May 2020 13:41:14 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/redis%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</guid>
+      <description>什么是NoSQL -&amp;gt; Not Only SQL k-v模式存储 不遵循SQL标准 不支持ACID(不代表不支持事务) 远超于SQL的性能 适用场景 对数据高并发的读写 海量数据</description>
+    </item>
+    
     <item>
       <title>网络信息采集读书笔记</title>
       <link>https://acm-py.github.io/post/%E5%9C%A8python%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96%E6%95%B0%E6%8D%AE/</link>
@@ -23,6 +68,15 @@
       
       <guid>https://acm-py.github.io/post/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
       <description>序列化数据 常用的模块是pickle。 特点： 用C编写，速度快。 可以存储什么? 所有原生Python 数据结构 支持 布尔值，整数，浮点数，复数，字符串</description>
+    </item>
+    
+    <item>
+      <title>Request库使用指南</title>
+      <link>https://acm-py.github.io/post/request%E5%BA%93%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Tue, 08 Jan 2019 09:22:17 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/post/request%E5%BA%93%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+      <description>Requests Library 库使用指南 本文翻译于Real Python，翻译以便于查阅。若有不同之处，夹杂作者主观喜好。 开始 1 2 3 4 5 6 7 8 9 10 11 12 response = request.get(&amp;#39;url&amp;#39;) # 可以向下面</description>
     </item>
     
   </channel>

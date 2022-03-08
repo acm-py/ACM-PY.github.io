@@ -6,13 +6,49 @@
     <description>Recent content in Categories on 阿炳-一个热衷于折腾和技术的Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 08 Mar 2020 15:36:11 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Mar 2022 17:29:10 +0800</lastBuildDate><atom:link href="https://acm-py.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python</title>
       <link>https://acm-py.github.io/categories/python/</link>
-      <pubDate>Sun, 08 Mar 2020 15:36:11 +0800</pubDate>
+      <pubDate>Wed, 02 Mar 2022 17:29:10 +0800</pubDate>
       
       <guid>https://acm-py.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Django</title>
+      <link>https://acm-py.github.io/categories/django/</link>
+      <pubDate>Wed, 17 Feb 2021 13:41:14 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/categories/django/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>操作系统</title>
+      <link>https://acm-py.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Fri, 02 Oct 2020 17:29:10 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NoSQL</title>
+      <link>https://acm-py.github.io/categories/nosql/</link>
+      <pubDate>Tue, 12 May 2020 13:41:14 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/categories/nosql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>https://acm-py.github.io/categories/redis/</link>
+      <pubDate>Tue, 12 May 2020 13:41:14 +0800</pubDate>
+      
+      <guid>https://acm-py.github.io/categories/redis/</guid>
       <description></description>
     </item>
     
